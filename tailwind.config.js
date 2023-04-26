@@ -19,5 +19,5 @@ module.exports = {
       logo: ["var(--font-satisfy)", ...fontFamily.sans],
     },
   },
-  plugins: [require("prettier-plugin-tailwindcss")],
+  // plugins: [require("prettier-plugin-tailwindcss")],
 };

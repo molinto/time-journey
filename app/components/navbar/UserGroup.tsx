@@ -1,14 +1,21 @@
-import Link from "next/link";
+"use client";
+
+import useLoginStore from "../hooks/useLoginStore";
+import useRegisterStore from "../hooks/useRegisterStore";
 import UserIcon from "../icons/UserIcon";
 
 const UserGroup = () => {
+  const { onOpen } = useLoginStore();
+  const registerModal = useRegisterStore();
+  const loginModal = useLoginStore();
+
   const currentUser = false;
   return (
     <div className="md: flex items-center gap-3 border-t border-gray-400 pt-2 md:border-l md:border-t-0 md:pl-3 md:pt-0 ">
       {currentUser ? (
-        <Link href={""}>LogOut</Link>
+        <button className="">LogOut</button>
       ) : (
-        <Link href={""}>Login</Link>
+        <button onClick={onOpen}>LogIn</button>
       )}
       <div className="hidden rounded-full border border-gray-600 p-1 md:block">
         <UserIcon size={16} />

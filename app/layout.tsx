@@ -1,4 +1,6 @@
 import { Poppins, Roboto_Mono, Satisfy } from "next/font/google";
+import LoginModal from "./components/modals/LoginModal";
+import RegisterModal from "./components/modals/RegisterModal";
 import Navbar from "./components/navbar/Navbar";
 import "./globals.css";
 
@@ -24,6 +26,8 @@ export default function RootLayout({
     <html lang="en" className={`${roboto.className} ${satisfy.variable}`}>
       <body>
         <Navbar />
+        <LoginModal />
+        <RegisterModal />
         <main className="flex h-full items-center justify-center pt-20">
           {children}
         </main>
