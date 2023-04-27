@@ -1,6 +1,7 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import useClickOutside from "../hooks/useClickOutside";
 import CloseIcon from "../icons/CloseIcon";
 
 interface ModalProps {
@@ -35,6 +36,9 @@ const Modal = ({
     }, 300);
   }, [disabled, onClose]);
 
+  const modalRef = useRef<HTMLDivElement>(null);
+  useClickOutside(modalRef, handleClose);
+
   if (!isOpen) return null;
 
   return (
@@ -44,6 +48,7 @@ const Modal = ({
       } `}
     >
       <div
+        ref={modalRef}
         className={`h-full w-full rounded-md bg-white p-3  duration-300 md:h-auto md:w-[500px]
       ${isShown ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"}
       `}
