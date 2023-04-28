@@ -1,12 +1,14 @@
 "use client";
 
-import { useState } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import Button from "../Button";
 import Input from "../Input";
+import useLoginForm from "../hooks/useLoginForm";
 import useLoginStore from "../hooks/useLoginStore";
 import useRegisterStore from "../hooks/useRegisterStore";
+import { handleKeyDown } from "../utils/handleFormKeyPress";
 import Modal from "./Modal";
+import OAuthButtons from "./OAuthButtons";
 
 export interface IFormInputs {
   name: string;
@@ -15,8 +17,7 @@ export interface IFormInputs {
 }
 
 const LoginModal = () => {
-  const [loading, setLoading] = useState(false);
-
+  const { loading, submitLoginForm } = useLoginForm();
   const {
     register,
     formState: { errors },
@@ -26,41 +27,36 @@ const LoginModal = () => {
   const loginModal = useLoginStore();
   const registerModal = useRegisterStore();
 
-  const submitForm: SubmitHandler<IFormInputs> = (data: any) =>
-    console.log(data);
-
   const bodyContent = (
-    <form
-      className="flex flex-col items-center gap-3 py-3"
-      onSubmit={handleSubmit(submitForm)}
-    >
-      <Input
-        type="text"
-        id="name"
-        disabled={loading}
-        register={register}
-        errors={errors}
-      />
-      <Input
-        type="email"
-        id="email"
-        disabled={loading}
-        register={register}
-        errors={errors}
-        pattern={{
-          value: /\S+@\S+\.\S+/,
-          message: "Entered value does not match email format",
-        }}
-      />
-      <Input
-        type="password"
-        id="password"
-        disabled={loading}
-        register={register}
-        errors={errors}
-      />
-      <Button label="Log in" type="submit" />
-    </form>
+    <div className="flex flex-col gap-3">
+      <form
+        onKeyDown={handleKeyDown}
+        className="flex flex-col items-center gap-3"
+        onSubmit={handleSubmit(submitLoginForm)}
+      >
+        <Input
+          type="email"
+          id="email"
+          disabled={loading}
+          register={register}
+          errors={errors}
+          pattern={{
+            value: /\S+@\S+\.\S+/,
+            message: "Entered value does not match email format",
+          }}
+        />
+        <Input
+          type="password"
+          id="password"
+          disabled={loading}
+          register={register}
+          errors={errors}
+        />
+        <Button label="Log in" type="submit" />
+      </form>
+      <hr />
+      <OAuthButtons />
+    </div>
   );
 
   const footerContent = (
