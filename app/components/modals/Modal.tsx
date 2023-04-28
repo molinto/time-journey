@@ -49,7 +49,7 @@ const Modal = ({
     >
       <div
         ref={modalRef}
-        className={`h-full w-full rounded-md bg-white p-3  duration-300 md:h-auto md:w-[500px]
+        className={`flex h-full w-full flex-col gap-3 rounded-md bg-white p-3  duration-300 md:h-auto md:w-[500px]
       ${isShown ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"}
       `}
       >
@@ -62,8 +62,8 @@ const Modal = ({
           </button>
           <h2 className="text-lg">{title}</h2>
         </div>
-
         <div className="">{body}</div>
+        <hr />
         <div className="">{footer}</div>
       </div>
     </div>

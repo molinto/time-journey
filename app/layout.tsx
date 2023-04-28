@@ -1,10 +1,11 @@
-import { Poppins, Roboto_Mono, Satisfy } from "next/font/google";
+import { Roboto_Mono, Satisfy } from "next/font/google";
 import LoginModal from "./components/modals/LoginModal";
 import RegisterModal from "./components/modals/RegisterModal";
 import Navbar from "./components/navbar/Navbar";
 import "./globals.css";
+import { NextAuthProvider } from "./provider";
+import ToasterProvider from "./providers/ToasterProvider";
 
-const poppins = Poppins({ weight: "400", subsets: ["latin"] });
 const roboto = Roboto_Mono({ weight: "400", subsets: ["latin"] });
 const satisfy = Satisfy({
   weight: "400",
@@ -25,12 +26,15 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${roboto.className} ${satisfy.variable}`}>
       <body>
-        <Navbar />
-        <LoginModal />
-        <RegisterModal />
-        <main className="flex h-full items-center justify-center pt-20">
-          {children}
-        </main>
+        <NextAuthProvider>
+          <ToasterProvider />
+          <Navbar />
+          <LoginModal />
+          <RegisterModal />
+          <main className="flex h-full items-center justify-center pt-20">
+            {children}
+          </main>
+        </NextAuthProvider>
       </body>
     </html>
   );
