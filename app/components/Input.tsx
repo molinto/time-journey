@@ -39,7 +39,6 @@ const Input = ({
         }`}
         placeholder=" "
       />
-      {/* {errors?.firstName && <p>{errors?.email.message}</p>} */}
       <label
         className={`
         pointer-events-none absolute left-4 top-5 z-10 origin-[0] -translate-y-4 scale-75 transform  capitalize
