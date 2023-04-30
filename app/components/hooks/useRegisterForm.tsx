@@ -2,7 +2,6 @@ import axios from "axios";
 import { signIn } from "next-auth/react";
 import { useState } from "react";
 import { FieldValues, SubmitHandler } from "react-hook-form";
-import { toast } from "react-hot-toast";
 import useLoginStore from "./useLoginStore";
 import useRegisterStore from "./useRegisterStore";
 
@@ -17,7 +16,7 @@ const useRegister = () => {
       .post("/api/register", data)
       .then(() => registerModal.onClose())
       .catch((error) => {
-        toast.error(error.message);
+        // toast.error(error.message);
       });
 
     signIn("credentials", {
@@ -25,12 +24,12 @@ const useRegister = () => {
       redirect: false,
     }).then((callback) => {
       if (callback?.ok) {
-        toast.success("Logged In");
+        // toast.success("Logged In");
         loginModal.onClose();
       }
 
       if (callback?.error) {
-        toast.error(callback.error);
+        // toast.error(callback.error);
       }
     });
     setLoading(false);

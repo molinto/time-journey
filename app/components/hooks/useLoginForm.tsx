@@ -6,29 +6,34 @@ import useLoginStore from "./useLoginStore";
 
 const useLoginForm = () => {
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<"email" | "password" | null>(null);
   const loginModal = useLoginStore();
   //   const router = useRouter()
-  const submitLoginForm: SubmitHandler<FieldValues> = (data) => {
+  const submitLoginForm: SubmitHandler<FieldValues> = async (data) => {
     setLoading(true);
-
+    setError(null);
     signIn("credentials", {
       ...data,
       redirect: false,
     })
-      .then((callback) => {
-        if (callback?.ok) {
+      .then((res) => {
+        if (res?.error) {
+          console.log(res.error);
+          if (res.error === "email") {
+            setError("email");
+          }
+          if (res.error === "password") {
+            setError("password");
+          }
+        } else {
           toast.success("Logged in");
           //   router.refresh();
           loginModal.onClose();
         }
-
-        if (callback?.error) {
-          toast.error(callback.error);
-        }
       })
       .finally(() => setLoading(false));
   };
-  return { loading, submitLoginForm };
+  return { loading, submitLoginForm, error };
 };
 
 export default useLoginForm;

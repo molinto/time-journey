@@ -7,14 +7,9 @@ import useLoginStore from "../hooks/useLoginStore";
 import useRegisterForm from "../hooks/useRegisterForm";
 import useRegisterStore from "../hooks/useRegisterStore";
 import { handleKeyDown } from "../utils/handleFormKeyPress";
+import { IFormInputs } from "./LoginModal";
 import Modal from "./Modal";
 import OAuthButtons from "./OAuthButtons";
-
-export interface IFormInputs {
-  name: string;
-  email: string;
-  password: string;
-}
 
 const RegisterModal = () => {
   const {
