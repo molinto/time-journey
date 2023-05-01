@@ -12,6 +12,7 @@ const NavMenu = ({ isOpen }: NavMenuProps) => {
   const loginModal = useLoginStore();
   const { data: session } = useSession();
   const currentUser = session?.user;
+  console.log(currentUser);
 
   return (
     <div
