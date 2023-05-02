@@ -3,8 +3,9 @@ import LoginModal from "./components/modals/LoginModal";
 import RegisterModal from "./components/modals/RegisterModal";
 import Navbar from "./components/navbar/Navbar";
 import "./globals.css";
-import { NextAuthProvider } from "./provider";
+import { NextAuthProvider } from "./providers/SessionProvider";
 import ToasterProvider from "./providers/ToasterProvider";
+import { ReduxProvider } from "./providers/ReduxProvider";
 
 const roboto = Roboto_Mono({ weight: "400", subsets: ["latin"] });
 const satisfy = Satisfy({
@@ -28,13 +29,15 @@ export default function RootLayout({
     <html lang="en" className={`${roboto.className} ${satisfy.variable}`}>
       <body>
         <NextAuthProvider>
-          <ToasterProvider />
-          <Navbar />
-          <LoginModal />
-          <RegisterModal />
-          <main className="flex h-full items-center justify-center pt-20">
-            {children}
-          </main>
+          <ReduxProvider>
+            <ToasterProvider />
+            <Navbar />
+            <LoginModal />
+            <RegisterModal />
+            <main className="flex h-full items-center justify-center pt-20">
+              {children}
+            </main>
+          </ReduxProvider>
         </NextAuthProvider>
       </body>
     </html>

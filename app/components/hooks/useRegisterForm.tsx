@@ -2,19 +2,18 @@ import axios from "axios";
 import { signIn } from "next-auth/react";
 import { useState } from "react";
 import { FieldValues, SubmitHandler } from "react-hook-form";
-import useLoginStore from "./useLoginStore";
-import useRegisterStore from "./useRegisterStore";
+import { useAppDispatch } from "../utils/reduxHooks";
+import { close } from "../modals/modalSlice";
 
 const useRegister = () => {
   const [loading, setLoading] = useState(false);
-  const registerModal = useRegisterStore();
-  const loginModal = useLoginStore();
+  const dispatch = useAppDispatch();
 
   const submitRegisterForm: SubmitHandler<FieldValues> = async (data) => {
     setLoading(true);
     await axios
       .post("/api/register", data)
-      .then(() => registerModal.onClose())
+      .then(() => dispatch(close))
       .catch((error) => {
         // toast.error(error.message);
       });
@@ -25,7 +24,7 @@ const useRegister = () => {
     }).then((callback) => {
       if (callback?.ok) {
         // toast.success("Logged In");
-        loginModal.onClose();
+        // loginModal.onClose();
       }
 
       if (callback?.error) {
