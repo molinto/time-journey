@@ -2,12 +2,13 @@ import { signIn } from "next-auth/react";
 import { useState } from "react";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 import { toast } from "react-hot-toast";
-import useLoginStore from "./useLoginStore";
+import { useAppDispatch } from "../utils/reduxHooks";
+import { close } from "../modals/modalSlice";
 
 const useLoginForm = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<"email" | "password" | null>(null);
-  const loginModal = useLoginStore();
+  const dispatch = useAppDispatch();
   //   const router = useRouter()
   const submitLoginForm: SubmitHandler<FieldValues> = async (data) => {
     setLoading(true);
@@ -28,7 +29,7 @@ const useLoginForm = () => {
         } else {
           toast.success("Logged in");
           //   router.refresh();
-          loginModal.onClose();
+          dispatch(close);
         }
       })
       .finally(() => setLoading(false));

@@ -3,13 +3,13 @@
 import { useForm } from "react-hook-form";
 import Button from "../Button";
 import Input from "../Input";
-import useLoginStore from "../hooks/useLoginStore";
 import useRegisterForm from "../hooks/useRegisterForm";
-import useRegisterStore from "../hooks/useRegisterStore";
 import { handleKeyDown } from "../utils/handleFormKeyPress";
 import { IFormInputs } from "./LoginModal";
 import Modal from "./Modal";
 import OAuthButtons from "./OAuthButtons";
+import { useAppDispatch, useAppSelector } from "../utils/reduxHooks";
+import { open } from "./modalSlice";
 
 const RegisterModal = () => {
   const {
@@ -18,10 +18,9 @@ const RegisterModal = () => {
     handleSubmit,
   } = useForm<IFormInputs>();
 
-  const registerModal = useRegisterStore();
-  const loginModal = useLoginStore();
-
   const { loading, submitRegisterForm } = useRegisterForm();
+  const isOpen = useAppSelector((state) => state.modal.value === "register");
+  const dispatch = useAppDispatch();
 
   const bodyContent = (
     <div className="flex flex-col gap-3">
@@ -71,8 +70,7 @@ const RegisterModal = () => {
         onClick={(e) => {
           e.preventDefault();
 
-          registerModal.onClose();
-          loginModal.onOpen();
+          dispatch(open("login"));
         }}
       >
         LogIn
@@ -83,11 +81,10 @@ const RegisterModal = () => {
   return (
     <Modal
       disabled={loading}
-      isOpen={registerModal.isOpen}
       title="Register"
-      onClose={registerModal.onClose}
       body={bodyContent}
       footer={footerContent}
+      isOpen={isOpen}
     />
   );
 };

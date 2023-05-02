@@ -6,11 +6,11 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import Button from "../Button";
 import Input from "../Input";
-import useLoginStore from "../hooks/useLoginStore";
-import useRegisterStore from "../hooks/useRegisterStore";
 import { handleKeyDown } from "../utils/handleFormKeyPress";
 import Modal from "./Modal";
 import OAuthButtons from "./OAuthButtons";
+import { open, close } from "./modalSlice";
+import { useAppDispatch, useAppSelector } from "../utils/reduxHooks";
 
 export interface IFormInputs {
   name?: string;
@@ -21,6 +21,9 @@ export interface IFormInputs {
 
 const LoginModal = () => {
   const [loading, setLoading] = useState(false);
+
+  const isOpen = useAppSelector((state) => state.modal.value === "login");
+  const dispatch = useAppDispatch();
 
   const {
     register,
@@ -59,14 +62,11 @@ const LoginModal = () => {
           }
         } else {
           toast.success("Logged in");
-          loginModal.onClose();
+          dispatch(close);
         }
       })
       .finally(() => setLoading(false));
   });
-
-  const loginModal = useLoginStore();
-  const registerModal = useRegisterStore();
 
   const bodyContent = (
     <div className="flex flex-col gap-3">
@@ -108,8 +108,7 @@ const LoginModal = () => {
         className="underline transition duration-200 hover:text-gray-400"
         onClick={(e) => {
           e.preventDefault();
-          loginModal.onClose();
-          registerModal.onOpen();
+          dispatch(open("register"));
         }}
       >
         Register
@@ -120,11 +119,10 @@ const LoginModal = () => {
   return (
     <Modal
       disabled={loading}
-      isOpen={loginModal.isOpen}
       title="Log in"
-      onClose={loginModal.onClose}
       body={bodyContent}
       footer={footerContent}
+      isOpen={isOpen}
     />
   );
 };

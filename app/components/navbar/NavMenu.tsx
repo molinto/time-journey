@@ -1,16 +1,18 @@
 "use client";
 
 import { signOut, useSession } from "next-auth/react";
-import useLoginStore from "../hooks/useLoginStore";
 import MenuItem from "./MenuItem";
+import { useAppDispatch } from "../utils/reduxHooks";
+import { close, open } from "../modals/modalSlice";
 
 interface NavMenuProps {
   isOpen: boolean;
 }
 
 const NavMenu = ({ isOpen }: NavMenuProps) => {
-  const loginModal = useLoginStore();
+  const dispatch = useAppDispatch();
   const { data: session } = useSession();
+  const onClick = () => dispatch(open("login"));
   const currentUser = session?.user;
   console.log(currentUser);
 
@@ -24,8 +26,8 @@ const NavMenu = ({ isOpen }: NavMenuProps) => {
       }
     >
       <ul className="flex list-none flex-col md:flex-row md:items-center">
-        <MenuItem title="Play" />
-        <MenuItem title="Rankings" />
+        <MenuItem title="Play" to="/game" />
+        <MenuItem title="Rankings" to="/rankings" />
         {currentUser ? (
           <MenuItem
             title="Log Out"
@@ -34,7 +36,7 @@ const NavMenu = ({ isOpen }: NavMenuProps) => {
             }}
           />
         ) : (
-          <MenuItem title="LogIn" onClick={loginModal.onOpen} />
+          <MenuItem title="LogIn" onClick={onClick} />
         )}
       </ul>
     </div>

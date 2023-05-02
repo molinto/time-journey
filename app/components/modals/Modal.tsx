@@ -3,24 +3,20 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import useClickOutside from "../hooks/useClickOutside";
 import CloseIcon from "../icons/CloseIcon";
+import { useAppDispatch, useAppSelector } from "../utils/reduxHooks";
+import { close, open } from "./modalSlice";
 
 interface ModalProps {
-  isOpen?: boolean;
   title: string;
-  onClose: () => void;
   body?: React.ReactElement;
   footer?: React.ReactElement;
   disabled?: boolean;
+  isOpen: boolean;
 }
 
-const Modal = ({
-  title,
-  isOpen,
-  onClose,
-  body,
-  footer,
-  disabled,
-}: ModalProps) => {
+const Modal = ({ isOpen, title, body, footer, disabled }: ModalProps) => {
+  const dispatch = useAppDispatch();
+
   const [isShown, setIsShown] = useState(isOpen);
 
   useEffect(() => {
@@ -32,9 +28,13 @@ const Modal = ({
 
     setIsShown(false);
     setTimeout(() => {
-      onClose();
+      dispatch(close());
     }, 300);
-  }, [disabled, onClose]);
+  }, [disabled, close]);
+
+  // const handleClose = () => {
+  //   dispatch(close());
+  // };
 
   const modalRef = useRef<HTMLDivElement>(null);
   useClickOutside(modalRef, handleClose);
