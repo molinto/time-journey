@@ -2,38 +2,29 @@
 
 import Button from "../components/Button";
 import Question from "../components/Question";
-import useGame from "../components/hooks/6666666";
+import useGame from "../components/hooks/useGame";
+import { useAppDispatch, useAppSelector } from "../components/utils/reduxHooks";
+import Results from "./Results";
+import { selectCurrentQuestion, startGame } from "./gameSlice";
 
 const Game = () => {
-  const {
-    gameState,
-    questions,
-    checkResults,
-    startGame,
-    finishGame,
-    nextQuestion,
-    currentQuestionNumber,
-    loading,
-  } = useGame();
+  const preGame = !useAppSelector((state) => state.game.gameStarted);
+  const dispatch = useAppDispatch();
+  const { gameFinished, checkResults } = useGame();
 
-  if (gameState === "pregame") {
-    return <Button label={"Start"} type={"button"} onClick={startGame} />;
-  }
-
-  if (gameState === "results") {
+  if (preGame) {
     return (
-      <div className="">
-        <h1>Well done</h1>
-      </div>
+      <Button
+        label={"Start"}
+        type={"button"}
+        onClick={() => dispatch(startGame())}
+      />
     );
   }
 
-  return (
-    <Question
-      question={questions[currentQuestionNumber]}
-      onSubmit={nextQuestion}
-    />
-  );
+  if (gameFinished) return <Results />;
+
+  return <Question />;
 };
 
 export default Game;

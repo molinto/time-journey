@@ -5,14 +5,16 @@ import MenuIcon from "../icons/MenuIcon";
 import Logo from "./Logo";
 import NavMenu from "./NavMenu";
 import User from "./User";
-import { useAppDispatch, useAppSelector } from "../utils/reduxHooks";
+import { useAppSelector } from "../utils/reduxHooks";
+import { selectCurrentQuestion } from "@/app/game/gameSlice";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleIsOpen = () => {
     setIsOpen(!isOpen);
   };
-  const kek = useAppSelector((state) => state.modal.value);
+  const currentQuestion = useAppSelector(selectCurrentQuestion);
+  const kek = JSON.stringify(currentQuestion);
 
   return (
     <nav className="fixed flex h-16 w-full items-center justify-between border-b bg-slate-100 px-5 shadow-sm">
