@@ -32,10 +32,6 @@ const Modal = ({ isOpen, title, body, footer, disabled }: ModalProps) => {
     }, 300);
   }, [disabled, close]);
 
-  // const handleClose = () => {
-  //   dispatch(close());
-  // };
-
   const modalRef = useRef<HTMLDivElement>(null);
   useClickOutside(modalRef, handleClose);
 

@@ -1,14 +1,9 @@
 import { AppDispatch } from "@/app/store";
-import { Payload } from "@prisma/client/runtime";
-import { AnyAction, PayloadAction } from "@reduxjs/toolkit";
 import Link from "next/link";
-import { Dispatch } from "react";
-import { useAppDispatch } from "../utils/reduxHooks";
-import { open } from "../modals/modalSlice";
 
 interface MenuItemProps {
   title: string;
-  onClick?: any;
+  onClick?: (() => void) | (() => AppDispatch);
   to?: string;
 }
 

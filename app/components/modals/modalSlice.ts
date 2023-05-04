@@ -13,14 +13,15 @@ const initialState: ModalSlice = {
 };
 
 export const modalSlice = createSlice({
-  name: "loginModal",
+  name: "modal",
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
-    open: (state, action: PayloadAction<ModalOptions>) => {
-      state.value = action.payload;
-    },
-    close: () => initialState,
+    open: (state, action: PayloadAction<ModalOptions>) => ({
+      ...state,
+      value: action.payload,
+    }),
+    close: (state) => ({ ...state, value: "none" }),
   },
 });
 
