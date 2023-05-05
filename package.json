@@ -11,7 +11,10 @@
   "dependencies": {
     "@next-auth/prisma-adapter": "^1.0.6",
     "@prisma/client": "^4.13.0",
+<<<<<<< HEAD
     "@react-google-maps/api": "^2.18.1",
+=======
+>>>>>>> 950d5a1409be0ab57f783c338d352fd1b5cc1291
     "@reduxjs/toolkit": "^1.9.5",
     "@types/node": "18.15.13",
     "@types/react": "18.0.37",
