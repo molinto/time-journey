@@ -1,6 +1,6 @@
 interface Coordinates {
   lat: string;
-  lon: string;
+  lng: string;
 }
 
 interface Question {

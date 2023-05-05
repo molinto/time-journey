@@ -10,6 +10,7 @@ import Button from "./Button";
 import { useAppDispatch, useAppSelector } from "./utils/reduxHooks";
 import Slider from "./Slider";
 import { ChangeEvent, useState } from "react";
+import Map from "./GoogleMap";
 
 interface QuestionProps {}
 
@@ -44,6 +45,7 @@ const Question = () => {
 
       <Button type="button" label="Submit!" onClick={onClick} />
       <Slider year={year} onChange={handleChange} />
+      <Map />
     </div>
   );
 };
