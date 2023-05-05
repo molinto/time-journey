@@ -7,3 +7,36 @@ html,
 :root {
   height: 100%;
 }
+
+:root {
+  --brick-red: #db5049;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  transform: translateY(10px);
+  height: 2.5em;
+  width: 1em;
+  border-radius: 8px;
+  background-color: var(--brick-red);
+}
+
+input[type="range"]::-moz-range-thumb {
+  -webkit-appearance: none;
+  transform: translateY(10px);
+  height: 2.5em;
+  width: 1em;
+  border-radius: 8px;
+  background-color: var(--brick-red);
+  border: none;
+}
+
+input[type="range"]::-ms-thumb {
+  -webkit-appearance: none;
+  border: none;
+  transform: translateY(10px);
+  height: 2.5em;
+  width: 1em;
+  border-radius: 8px;
+  background-color: var(--brick-red);
+}
