@@ -4,7 +4,6 @@ import { signOut, useSession } from "next-auth/react";
 import MenuItem from "./MenuItem";
 import { useAppDispatch } from "../utils/reduxHooks";
 import { open } from "../modals/modalSlice";
-import { fetchQuestions } from "@/app/game/gameSlice";
 
 interface NavMenuProps {
   isOpen: boolean;
@@ -38,7 +37,6 @@ const NavMenu = ({ isOpen }: NavMenuProps) => {
         ) : (
           <MenuItem title="LogIn" onClick={() => dispatch(open("login"))} />
         )}
-        <MenuItem title="KEL" onClick={() => dispatch(fetchQuestions())} />
       </ul>
     </div>
   );

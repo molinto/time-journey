@@ -10,7 +10,7 @@ const Logo = () => {
         width={80}
         height={80}
         alt="Logo"
-        className="fixed top-1 hidden md:block "
+        className="absolute top-1 z-50 hidden md:block "
       />
       <h1 className="font-logo text-4xl">TimeGuessr</h1>
     </span>

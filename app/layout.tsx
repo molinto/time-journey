@@ -34,7 +34,7 @@ export default function RootLayout({
             <Navbar />
             <LoginModal />
             <RegisterModal />
-            <main className="flex h-full items-center justify-center pt-20">
+            <main className="flex h-full items-center justify-center pt-16">
               {children}
             </main>
           </ReduxProvider>
