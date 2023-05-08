@@ -1,54 +1,20 @@
 "use client";
 
-import {
-  addAnswer,
-  selectCurrentQuestion,
-  selectCurrentQuestionNumber,
-} from "../game/gameSlice";
 import Button from "./Button";
-import { useAppDispatch, useAppSelector } from "./utils/reduxHooks";
 import Slider from "./Slider";
-import { ChangeEvent, useState } from "react";
 import Map from "./GoogleMap";
 import Image from "next/image";
 import TestImage from "../../public/test.jpg";
-
-interface QuestionProps {}
+import useQuestion from "./hooks/useQuestion";
 
 const Question = () => {
-  const currentQuestion = useAppSelector(selectCurrentQuestion);
-  const dispatch = useAppDispatch();
-  const [year, setYear] = useState(1963);
-  const [userMarker, setUserMarker] = useState<Coordinates | null>(null);
-  const handleMapClick = (e: google.maps.MapMouseEvent) => {
-    // console.log(e.latLng?.toString());
-    if (!e.latLng) return;
-    setUserMarker({
-      lat: e.latLng?.lat(),
-      lng: e.latLng?.lng(),
-    });
-  };
-
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setYear(parseInt(event.currentTarget.value));
-  };
-
-  const kek = JSON.stringify(currentQuestion);
-  const onClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-
-    if (!userMarker) return;
-
-    const answer: Answer = {
-      year: year,
-      coordinates: userMarker,
-      id: currentQuestion.id,
-    };
-    // console.log(currentQuestionNumber);
-    dispatch(addAnswer(answer));
-    setUserMarker(null);
-    setYear(1963);
-  };
+  const {
+    userMarker,
+    handleYearSlider,
+    handleMapClick,
+    year,
+    handleSubmitQuestion,
+  } = useQuestion();
 
   return (
     <div className="flex h-full w-full">
@@ -62,12 +28,12 @@ const Question = () => {
       </div>
       <div className="relative flex min-w-[432px] flex-col items-center justify-start gap-5 p-4">
         <Map userMarker={userMarker} handleMapClick={handleMapClick} />
-        <Slider year={year} onChange={handleChange} />
+        <Slider year={year} onChange={handleYearSlider} />
         <Button
           type="button"
           label={userMarker ? "Submit!" : "Place a pin on the map!"}
           disabled={!userMarker}
-          onClick={onClick}
+          onClick={handleSubmitQuestion}
         />
       </div>
     </div>

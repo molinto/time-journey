@@ -62,7 +62,7 @@ const LoginModal = () => {
           }
         } else {
           toast.success("Logged in");
-          dispatch(close);
+          dispatch(close());
         }
       })
       .finally(() => setLoading(false));
