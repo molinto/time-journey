@@ -19,7 +19,6 @@ const useLoginForm = () => {
     })
       .then((res) => {
         if (res?.error) {
-          console.log(res.error);
           if (res.error === "email") {
             setError("email");
           }

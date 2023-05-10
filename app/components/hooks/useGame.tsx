@@ -2,41 +2,30 @@
 
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../utils/reduxHooks";
-import { selectCurrentQuestionNumber } from "@/app/game/gameSlice";
+import {
+  fetchQuestions,
+  selectCurrentQuestionNumber,
+} from "@/app/game/gameSlice";
+import { useRouter } from "next/navigation";
 
 const useGame = () => {
+  const router = useRouter();
   const dispatch = useAppDispatch();
-  const currentQuestion = useAppSelector(selectCurrentQuestionNumber);
-  const gameFinished = useAppSelector(selectCurrentQuestionNumber) >= 5;
-  // const rightAnswer: Answer = {
-  //   id: "123",
-  //   year: 1995,
-  //   coordinates: {
-  //     lat: "2",
-  //     lon: "3",
-  //   },
+  const currentQuestionNumber = useAppSelector(
+    (state) => state.game.rightAnswers.length + 1
+  );
+  const isStarted =
+    useAppSelector((state) => state.game.questions).length !== 0;
 
-  const calculateScore = (userAnswer: Answer, rightAnswer: Answer) => {
-    const score: number = 3000;
-    return {
-      userAnswer,
-      rightAnswer,
-      score,
-    };
-  };
-
-  // const submitQuestion = () => {
-  //   if (currentQuestionNumber === 5) {
-  //     checkResults();
-  //   }
-  //   nextQuestion();
-  // };
+  useEffect(() => {
+    if (isStarted) {
+      router.push(`/game/question/${currentQuestionNumber}`);
+    }
+    dispatch(fetchQuestions());
+  }, [dispatch, isStarted]);
 
   const checkResults = () => {};
-  return {
-    checkResults,
-    gameFinished,
-  };
+  return { checkResults, currentQuestionNumber };
 };
 
 export default useGame;

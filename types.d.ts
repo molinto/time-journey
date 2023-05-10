@@ -13,3 +13,8 @@ interface Answer {
   year: number;
   coordinates: Coordinates;
 }
+
+interface Score {
+  id: string;
+  score: number;
+}

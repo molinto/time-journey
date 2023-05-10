@@ -7,13 +7,13 @@ export async function GET(request: Request) {
   const session = await getServerSession(authOptions);
   const user = session?.user?.email;
   const questions: Question[] = [
-    { id: "1", src: "one" },
+    { id: "1", src: "baklazhan" },
     { id: "2", src: "two" },
     { id: "3", src: "three" },
-    { id: "4", src: "four" },
-    { id: "5", src: "five" },
+    { id: "4", src: "pes" },
+    { id: "5", src: "kot" },
   ];
-  const kek = JSON.stringify(questions);
+
   //   const body = await request.json();
   //   const { email, name, password } = body;
 
@@ -27,5 +27,5 @@ export async function GET(request: Request) {
   //     },
   //   });
 
-  return NextResponse.json(kek);
+  return NextResponse.json(questions);
 }

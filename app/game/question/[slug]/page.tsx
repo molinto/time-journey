@@ -1,11 +1,10 @@
 "use client";
 
-import Button from "./Button";
-import Slider from "./Slider";
-import Map from "./GoogleMap";
+import useQuestion from "@/app/components/hooks/useQuestion";
 import Image from "next/image";
-import TestImage from "../../public/test.jpg";
-import useQuestion from "./hooks/useQuestion";
+import Slider from "@/app/components/Slider";
+import Button from "@/app/components/Button";
+import GMap from "@/app/components/GMap";
 
 const Question = () => {
   const {
@@ -20,14 +19,14 @@ const Question = () => {
     <div className="flex h-full w-full">
       <div className="relative -z-10 h-full w-full bg-amber-100 ">
         <Image
-          src={TestImage}
+          src="/test.jpg"
           alt="Photo"
           fill
           className="object-contain p-4"
         />
       </div>
       <div className="relative flex min-w-[432px] flex-col items-center justify-start gap-5 p-4">
-        <Map userMarker={userMarker} handleMapClick={handleMapClick} />
+        <GMap currentMarker={userMarker} handleMapClick={handleMapClick} />
         <Slider year={year} onChange={handleYearSlider} />
         <Button
           type="button"

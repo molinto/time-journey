@@ -102,7 +102,7 @@ const LoginModal = () => {
 
   const footerContent = (
     <div className="flex items-center justify-between">
-      <p>Don't have an account yet?</p>
+      <p>Don:&apos;t have an account yet?</p>
       <a
         href=""
         className="underline transition duration-200 hover:text-gray-400"

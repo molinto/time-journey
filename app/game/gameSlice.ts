@@ -1,34 +1,36 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 import axios from "axios";
-import { useAppSelector } from "../components/utils/reduxHooks";
 
 interface GameSlice {
   questions: Question[];
-  answers: Answer[];
+  userAnwers: Answer[];
+  rightAnswers: Answer[];
+  scores: Score[];
   status: "idle" | "loading" | "succeeded" | "failed";
-  gameStarted: boolean;
   error: string | null;
 }
 
 const initialState: GameSlice = {
-  questions: [
-    { id: "1", src: "one" },
-    { id: "2", src: "two" },
-    { id: "3", src: "three" },
-    { id: "4", src: "four" },
-    { id: "5", src: "five" },
-  ],
-  answers: [],
+  questions: [],
+  userAnwers: [],
+  rightAnswers: [],
+  scores: [],
   status: "idle",
   error: null,
-  gameStarted: false,
 };
 
-export const fetchQuestions = createAsyncThunk(
+export const fetchQuestions = createAsyncThunk<Question[]>(
   "game/fetchQuestions",
   async () => {
     const response = await axios.get("/api/questions");
+    return response.data;
+  }
+);
+export const fetchAnswerById = createAsyncThunk<Answer, string>(
+  "game/fetchAnswerById",
+  async (id: string) => {
+    const response = await axios.get(`/api/answers/${id}`);
     return response.data;
   }
 );
@@ -39,9 +41,10 @@ export const gameSlice = createSlice({
   reducers: {
     reset: () => initialState,
     addAnswer: (state, action: PayloadAction<Answer>) => {
-      if (state.answers.length < 5) {
-        state.answers.push(action.payload);
+      if (state.userAnwers.find((answer) => answer.id === action.payload.id)) {
+        return;
       }
+      state.userAnwers.push(action.payload);
     },
     startGame: (state) => ({ ...state, gameStarted: true }),
   },
@@ -59,6 +62,25 @@ export const gameSlice = createSlice({
         state.error = action.error.message
           ? action.error.message
           : "Something went wrong";
+      })
+      .addCase(fetchAnswerById.pending, (state, action) => {
+        state.status = "loading";
+      })
+      .addCase(fetchAnswerById.fulfilled, (state, { payload }) => {
+        state.status = "succeeded";
+        if (
+          state.rightAnswers.find((answer) => answer.id === payload.id) !==
+          undefined
+        ) {
+          return;
+        }
+        state.rightAnswers = state.rightAnswers.concat(payload);
+      })
+      .addCase(fetchAnswerById.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message
+          ? action.error.message
+          : "Something went wrong";
       });
   },
 });
@@ -71,8 +93,4 @@ export const selectQuestionById = (state: RootState, index: number) =>
   state.game.questions[index];
 
 export const selectCurrentQuestionNumber = (state: RootState) =>
-  state.game.answers.length;
-
-export const selectCurrentQuestion = (state: RootState) => {
-  return state.game.questions[state.game.answers.length];
-};
+  state.game.userAnwers.length;
