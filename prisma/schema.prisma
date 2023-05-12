@@ -18,8 +18,8 @@ model User {
   image          String?
   hashedPassword String?
 
-  pictureIDs String[]   @db.ObjectId
-  pictures  Picture[] @relation(fields: [pictureIDs], references: [id])
+  questionsIDs String[]   @db.ObjectId @map("pictureIDs")
+  questions  Question[] @relation(fields: [questionsIDs], references: [id])
   
   accounts Account[]
 }
@@ -44,14 +44,17 @@ model Account {
   @@unique([provider, providerAccountId])
 }
 
-model Picture {
+model Question {
   id            String   @id @default(auto()) @map("_id") @db.ObjectId
   imageSrc      String
   lat           String
-  lon           String
+  lng           String
   year          Int
+  description   String
+  author        String
   
   userIDs String[] @db.ObjectId
   users   User[]   @relation(fields: [userIDs], references: [id])
+	@@map("Question")
 }
 

@@ -30,7 +30,7 @@ const Modal = ({ isOpen, title, body, footer, disabled }: ModalProps) => {
     setTimeout(() => {
       dispatch(close());
     }, 300);
-  }, [disabled, close, dispatch]);
+  }, [disabled, dispatch]);
 
   const modalRef = useRef<HTMLDivElement>(null);
   useClickOutside(modalRef, handleClose);

@@ -37,11 +37,12 @@ const GMap = ({ finalMarkers, handleMapClick, currentMarker }: MapProps) => {
   );
   const options = useMemo<MapOptions>(
     () => ({
-      // mapId: "b181cac70f27f5e6",
+      mapId: "4e2d8b82f27a9603",
       disableDefaultUI: true,
       clickableIcons: false,
       draggableCursor: "crosshair",
       minZoom: 1.5,
+
       draggingCursor: null,
       restriction: {
         latLngBounds: {
@@ -55,12 +56,9 @@ const GMap = ({ finalMarkers, handleMapClick, currentMarker }: MapProps) => {
     []
   );
   const [expandMap, setExpandMap] = useState(false);
-  const mapContainerRef = useRef<HTMLDivElement>(null);
-  // useEffect(() => {
-  //   if (!finalMarkers) return;
 
-  //   const;
-  // }, [finalMarkers]);
+  const mapContainerRef = useRef<HTMLDivElement>(null);
+
   const onLoad = React.useCallback(
     function callback(map: google.maps.Map) {
       console.log(finalMarkers);
@@ -117,12 +115,29 @@ const GMap = ({ finalMarkers, handleMapClick, currentMarker }: MapProps) => {
             onClick={handleMapClick}
             options={options}
           >
-            {currentMarker ? <MarkerF position={currentMarker} /> : null}
+            {currentMarker ? (
+              <MarkerF
+                position={currentMarker}
+                icon={{
+                  url: "http://maps.google.com/mapfiles/ms/icons/blue.png",
+                }}
+              />
+            ) : null}
 
             {finalMarkers ? (
               <React.Fragment key={finalMarkers.rightMarker.lat.toString()}>
-                <MarkerF position={finalMarkers.userMarker} />
-                <MarkerF position={finalMarkers.rightMarker} />
+                <MarkerF
+                  position={finalMarkers.userMarker}
+                  icon={{
+                    url: "http://maps.google.com/mapfiles/ms/icons/blue.png",
+                  }}
+                />
+                <MarkerF
+                  position={finalMarkers.rightMarker}
+                  icon={{
+                    url: "http://maps.google.com/mapfiles/ms/icons/red.png",
+                  }}
+                />
                 <PolylineF
                   path={[finalMarkers.rightMarker, finalMarkers.userMarker]}
                   options={{

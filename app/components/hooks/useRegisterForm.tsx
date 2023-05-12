@@ -4,6 +4,7 @@ import { useState } from "react";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 import { useAppDispatch } from "../utils/reduxHooks";
 import { close } from "../modals/modalSlice";
+import { toast } from "react-hot-toast";
 
 const useRegister = () => {
   const [loading, setLoading] = useState(false);
@@ -15,7 +16,7 @@ const useRegister = () => {
       .post("/api/register", data)
       .then(() => dispatch(close))
       .catch((error) => {
-        // toast.error(error.message);
+        toast.error(error.message);
       });
 
     signIn("credentials", {
@@ -23,12 +24,12 @@ const useRegister = () => {
       redirect: false,
     }).then((callback) => {
       if (callback?.ok) {
-        // toast.success("Logged In");
-        // loginModal.onClose();
+        toast.success("Logged In");
+        dispatch(close());
       }
 
       if (callback?.error) {
-        // toast.error(callback.error);
+        toast.error(callback.error);
       }
     });
     setLoading(false);

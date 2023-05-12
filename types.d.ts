@@ -3,7 +3,7 @@ interface Coordinates {
   lng: number;
 }
 
-interface Question {
+interface GameQuestion {
   id: string;
   src: string;
 }

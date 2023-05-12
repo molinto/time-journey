@@ -6,7 +6,7 @@ import { authOptions } from "../auth/[...nextauth]/route";
 export async function GET(request: Request) {
   const session = await getServerSession(authOptions);
   const user = session?.user?.email;
-  const questions: Question[] = [
+  const questions: GameQuestion[] = [
     { id: "1", src: "baklazhan" },
     { id: "2", src: "two" },
     { id: "3", src: "three" },

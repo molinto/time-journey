@@ -22,7 +22,7 @@ const useGame = () => {
       router.push(`/game/question/${currentQuestionNumber}`);
     }
     dispatch(fetchQuestions());
-  }, [dispatch, isStarted]);
+  }, [dispatch, isStarted, router, currentQuestionNumber]);
 
   const checkResults = () => {};
   return { checkResults, currentQuestionNumber };

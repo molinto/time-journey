@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import Button from "../Button";
 import Input from "../Input";
-import { handleKeyDown } from "../utils/handleFormKeyPress";
+import { handleKeyDown } from "../utils/formUtils";
 import Modal from "./Modal";
 import OAuthButtons from "./OAuthButtons";
 import { open, close } from "./modalSlice";

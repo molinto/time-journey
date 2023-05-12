@@ -34,7 +34,7 @@ const Input = ({
         className={`peer w-full rounded-md border bg-white p-4 pl-4 pt-6 font-light placeholder-transparent outline-none disabled:cursor-not-allowed disabled:opacity-70 
         ${
           errors[id]
-            ? "focu:border-red-600 border-red-600"
+            ? "border-red-600 focus:border-red-600"
             : "border-gray-300 focus:border-black"
         }`}
         placeholder=" "

@@ -3,7 +3,7 @@ import { RootState } from "../store";
 import axios from "axios";
 
 interface GameSlice {
-  questions: Question[];
+  questions: GameQuestion[];
   userAnwers: Answer[];
   rightAnswers: Answer[];
   scores: Score[];
@@ -20,7 +20,7 @@ const initialState: GameSlice = {
   error: null,
 };
 
-export const fetchQuestions = createAsyncThunk<Question[]>(
+export const fetchQuestions = createAsyncThunk<GameQuestion[]>(
   "game/fetchQuestions",
   async () => {
     const response = await axios.get("/api/questions");

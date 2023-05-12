@@ -27,6 +27,8 @@ const NavMenu = ({ isOpen }: NavMenuProps) => {
       <ul className="flex list-none flex-col md:flex-row md:items-center">
         <MenuItem title="Play" to="/game" />
         <MenuItem title="Rankings" to="/rankings" />
+        <MenuItem title="Upload" to="/upload" />
+
         {currentUser ? (
           <MenuItem
             title="Log Out"

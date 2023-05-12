@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import Button from "../Button";
 import Input from "../Input";
 import useRegisterForm from "../hooks/useRegisterForm";
-import { handleKeyDown } from "../utils/handleFormKeyPress";
+import { handleKeyDown } from "../utils/formUtils";
 import { IFormInputs } from "./LoginModal";
 import Modal from "./Modal";
 import OAuthButtons from "./OAuthButtons";
