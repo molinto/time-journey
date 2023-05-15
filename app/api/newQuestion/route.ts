@@ -2,13 +2,14 @@ import { NextResponse } from "next/server";
 import prisma from "../../components/utils/prismadb";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]/route";
+import { Question } from "@prisma/client";
 
 export async function POST(request: Request) {
   const session = await getServerSession(authOptions);
   const email = session?.user?.email;
 
   if (!email) {
-    return new Response("Unauthorized access detected", {
+    return new NextResponse("Unauthorized access detected", {
       status: 401,
     });
   }
@@ -22,7 +23,7 @@ export async function POST(request: Request) {
   });
 
   if (!user?.email) {
-    return new Response("User not found", {
+    return new NextResponse("User not found", {
       status: 401,
     });
   }
@@ -40,7 +41,6 @@ export async function POST(request: Request) {
       },
     },
   });
-  return new Response("success", {
-    status: 200,
-  });
+
+  return new NextResponse("success");
 }

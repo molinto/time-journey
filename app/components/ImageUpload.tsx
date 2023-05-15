@@ -4,6 +4,7 @@ import { CldUploadWidget, CldUploadWidgetPropsOptions } from "next-cloudinary";
 import Image from "next/image";
 import { useState } from "react";
 import PhotoIcon from "./icons/PhotoIcon";
+import { error } from "console";
 
 const UPLOAD_PRESET = "zgrbsoin";
 
@@ -44,13 +45,13 @@ const options: CldUploadWidgetPropsOptions = {
   },
 };
 
-const ImageUpload = () => {
-  const [imageUrl, setImageUrl] = useState("");
+interface ImageUploadProps {
+  imageUrl: string;
+  handleUpload: (res: any) => void;
+  error?: boolean;
+}
 
-  const handleUpload = (res: any) => {
-    console.log(res);
-    setImageUrl(res.info.secure_url);
-  };
+const ImageUpload = ({ imageUrl, handleUpload, error }: ImageUploadProps) => {
   return (
     <CldUploadWidget
       uploadPreset={UPLOAD_PRESET}
@@ -61,33 +62,33 @@ const ImageUpload = () => {
         return (
           <div
             onClick={() => open?.()}
-            className="
-              relative
+            className={`relative
               flex
+              h-full
               cursor-pointer
-              flex-col
+              flex-col 
               items-center 
               justify-center 
-              gap-4 
+              gap-4
               border-2
               border-dashed
-              border-neutral-300
-              p-20
+              p-12
               text-neutral-600
               transition
               hover:opacity-70
-            "
+              ${error ? "border-red-400" : "border-neutral-300"}
+            `}
           >
             <PhotoIcon />
             <div className="text-lg font-semibold">Click to upload</div>
             {imageUrl ? (
               <div
                 className="
-              absolute inset-0 h-full w-full"
+              absolute inset-0 h-full w-full bg-gray-400"
               >
                 <Image
                   fill
-                  style={{ objectFit: "cover" }}
+                  style={{ objectFit: "contain" }}
                   src={imageUrl}
                   alt="Your photo"
                 />

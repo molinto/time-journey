@@ -13,7 +13,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="fixed flex h-16 w-full items-center justify-between border-b bg-slate-100 px-5 shadow-sm">
+    <nav className="fixed z-10 flex h-16 w-full items-center justify-between border-b bg-slate-100 px-5 shadow-sm">
       <Logo />
       <div className="relative flex items-center justify-between px-4">
         <button

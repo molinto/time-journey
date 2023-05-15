@@ -5,6 +5,7 @@ import Image from "next/image";
 import Slider from "@/app/components/Slider";
 import Button from "@/app/components/Button";
 import GMap from "@/app/components/GMap";
+import MapContainer from "@/app/components/MapContainer";
 
 const Question = () => {
   const {
@@ -26,7 +27,9 @@ const Question = () => {
         />
       </div>
       <div className="relative flex min-w-[432px] flex-col items-center justify-start gap-5 p-4">
-        <GMap currentMarker={userMarker} handleMapClick={handleMapClick} />
+        <MapContainer>
+          <GMap currentMarker={userMarker} handleMapClick={handleMapClick} />
+        </MapContainer>
         <Slider year={year} onChange={handleYearSlider} />
         <Button
           type="button"

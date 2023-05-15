@@ -3,7 +3,6 @@
 import Link from "next/link";
 import Button from "../components/Button";
 import useGame from "../components/hooks/useGame";
-import { useAppDispatch, useAppSelector } from "../components/utils/reduxHooks";
 
 const Game = () => {
   const { currentQuestionNumber } = useGame();
