@@ -8,76 +8,28 @@ import useResizeTextarea from "../components/hooks/useResizeTextarea";
 import { Question } from "@prisma/client";
 import axios from "axios";
 import Button from "../components/Button";
-import { useRouter } from "next/navigation";
+import useUploadForm from "../components/hooks/useUploadForm";
+import TextareaInputGroup from "../components/TextareaInputGroup";
+import TextInputGroup from "../components/TextInputGroup";
 
 const Upload = () => {
-  const [year, setYear] = useState(1963);
-  const [description, setDescription] = useState("");
-  const [author, setAuthor] = useState("");
-  const [location, setLocation] = useState<Coordinates>();
-  const [imageUrl, setImageUrl] = useState("");
-  const [imageError, setImageError] = useState(false);
-  const [descriptionError, setDescriptionError] = useState(false);
-  const [locationError, setLocationError] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const router = useRouter();
-
-  const handleYearSlider = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setYear(parseInt(e.currentTarget.value));
-  };
-
-  const descriptionRef = useRef<HTMLTextAreaElement>(null);
-
-  useResizeTextarea(descriptionRef.current, description);
-
-  const handleMapClick = (e: google.maps.MapMouseEvent) => {
-    if (!e.latLng) return;
-    setLocationError(false);
-    setLocation({
-      lat: e.latLng?.lat(),
-      lng: e.latLng?.lng(),
-    });
-  };
-
-  const onChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    setDescription(e.target.value);
-    setDescriptionError(e.target.value.length === 0);
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    setLoading(true);
-
-    if (!location) setLocationError(true);
-    if (!imageUrl) setImageError(true);
-    if (!description) setDescriptionError(true);
-
-    const isValid = !locationError && !imageError && !descriptionError;
-
-    if (!isValid) return;
-
-    const data: Partial<Question> = {
-      description: description,
-      lat: location!.lat.toString(),
-      lng: location!.lng.toString(),
-      imageSrc: imageUrl,
-      year: year,
-      author: author,
-    };
-
-    const newQuestion = await axios.post("/api/newQuestion", data);
-
-    router.push("/upload/success");
-
-    setLoading(false);
-  };
-
-  const handleUpload = (res: any) => {
-    if (!res?.info?.secure_url) return;
-    setImageError(false);
-    setImageUrl(res.info.secure_url);
-  };
+  const {
+    handleMapClick,
+    handleSubmit,
+    handleUpload,
+    handleYearSlider,
+    loading,
+    handleDescriptionChange,
+    year,
+    description,
+    author,
+    location,
+    locationError,
+    descriptionError,
+    imageUrl,
+    imageError,
+    handleAuthorChange,
+  } = useUploadForm();
 
   return (
     <form
@@ -106,40 +58,18 @@ const Upload = () => {
                   </p>
                 )}
               </div>
-              <div className="flex flex-col gap-2 ">
-                <label htmlFor="description">
-                  What is happening on this photo?
-                </label>
-                <div className="relative flex flex-col gap-1">
-                  <textarea
-                    className={`w-full overflow-hidden  rounded-md border bg-white p-4 font-light  outline-none disabled:cursor-not-allowed disabled:opacity-70
-          ${descriptionError ? "border-red-400" : "border-inherit"}
-          `}
-                    id="description"
-                    ref={descriptionRef}
-                    rows={1}
-                    value={description}
-                    onChange={onChange}
-                  />
-                  {descriptionError && (
-                    <p className="absolute right-1 top-1  text-sm text-red-400">
-                      Please provide description!
-                    </p>
-                  )}
-                </div>
-              </div>
-              <div className="flex flex-col gap-2">
-                <label htmlFor="author">Who took this photo?</label>
-                <input
-                  type="text"
-                  className="w-full overflow-hidden rounded-md border bg-white p-4 font-light  outline-none disabled:cursor-not-allowed disabled:opacity-70"
-                  id="author"
-                  value={author}
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                    setAuthor(e.target.value)
-                  }
-                />
-              </div>
+              <TextareaInputGroup
+                label={"What is happening on this photo?"}
+                onChange={handleDescriptionChange}
+                error={descriptionError}
+                value={description}
+                errorMessage={"Please provide description!"}
+              />
+              <TextInputGroup
+                label={"Who took this photo?"}
+                handleAuthorChange={handleAuthorChange}
+                value={author}
+              />
               <div className="flex flex-col gap-2">
                 <h3>What year the photo was taken?</h3>
                 <Slider year={year} onChange={handleYearSlider} />
