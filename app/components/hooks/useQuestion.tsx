@@ -1,7 +1,7 @@
 import { ChangeEvent, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../utils/reduxHooks";
-import { addAnswer, fetchAnswerById } from "@/app/game/gameSlice";
 import { useRouter, useParams } from "next/navigation";
+import { addAnswer } from "@/app/game/gameSlice";
 
 const useQuestion = () => {
   const router = useRouter();
@@ -16,12 +16,6 @@ const useQuestion = () => {
 
   const [year, setYear] = useState(1963);
   const [userMarker, setUserMarker] = useState<Coordinates | null>(null);
-  const rightAnswer = useAppSelector((state) =>
-    state.game.rightAnswers.find((answer) => answer.id === currentQuestion.id)
-  );
-  const isDone = rightAnswer != undefined;
-  const rightYear = rightAnswer?.year;
-  const rightMarker = rightAnswer?.coordinates;
 
   const handleMapClick = (e: google.maps.MapMouseEvent) => {
     if (!e.latLng) return;
@@ -35,7 +29,9 @@ const useQuestion = () => {
     setYear(parseInt(event.currentTarget.value));
   };
 
-  const handleSubmitQuestion = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleSubmitQuestion = async (
+    e: React.MouseEvent<HTMLButtonElement>
+  ) => {
     e.preventDefault();
 
     if (!userMarker) return;
@@ -45,19 +41,17 @@ const useQuestion = () => {
       year: year,
       coordinates: userMarker,
     };
+    await dispatch(addAnswer(answer));
 
-    dispatch(addAnswer(answer));
-    dispatch(fetchAnswerById(answer.id));
     router.push(`/game/question/${params.slug}/results`);
   };
+
   return {
     handleYearSlider,
     handleSubmitQuestion,
     handleMapClick,
     year,
     userMarker,
-    rightMarker,
-    rightYear,
   };
 };
 

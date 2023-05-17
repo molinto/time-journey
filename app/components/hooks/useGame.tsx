@@ -12,8 +12,10 @@ const useGame = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();
   const currentQuestionNumber = useAppSelector(
-    (state) => state.game.rightAnswers.length + 1
+    (state) => state.game.answers.length + 1
   );
+
+  const gameState = useAppSelector((state) => state.game.status);
   const isStarted =
     useAppSelector((state) => state.game.questions).length !== 0;
 
@@ -21,8 +23,8 @@ const useGame = () => {
     if (isStarted) {
       router.push(`/game/question/${currentQuestionNumber}`);
     }
-    dispatch(fetchQuestions());
-  }, [dispatch, isStarted, router, currentQuestionNumber]);
+    if (gameState === "idle") dispatch(fetchQuestions());
+  }, [dispatch, isStarted, router, currentQuestionNumber, gameState]);
 
   const checkResults = () => {};
   return { checkResults, currentQuestionNumber };
