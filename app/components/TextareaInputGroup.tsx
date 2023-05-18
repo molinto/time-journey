@@ -22,7 +22,7 @@ const TextareaInputGroup = ({
 
   return (
     <div className="flex flex-col gap-2 ">
-      <label htmlFor="description">{label}</label>
+      <label htmlFor="description">{label}&#42;</label>
       <div className="relative flex flex-col gap-1">
         <textarea
           className={`w-full overflow-hidden  rounded-md border bg-white p-4 font-light  outline-none disabled:cursor-not-allowed disabled:opacity-70

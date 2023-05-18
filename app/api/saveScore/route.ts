@@ -28,7 +28,7 @@ export async function POST(request: Request) {
 
   if (!user)
     return new NextResponse("Could not find user", {
-      status: 400,
+      status: 500,
     });
 
   try {

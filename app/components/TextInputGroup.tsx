@@ -14,6 +14,7 @@ const TextInputGroup = ({
       <label htmlFor="author">{label}</label>
       <input
         type="text"
+        autoComplete="off"
         className="w-full overflow-hidden rounded-md border bg-white p-4 font-light  outline-none disabled:cursor-not-allowed disabled:opacity-70"
         id="author"
         value={value}
