@@ -1,12 +1,14 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../store";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import {
   calculateDistance,
   calculateDistanceScore,
   calculateYearsDifference,
   calculateYearsScore,
 } from "../components/utils/gameUtils";
+import { error } from "console";
+import { RejectedActionFromAsyncThunk } from "@reduxjs/toolkit/dist/matchers";
 
 interface CompleteAnswer {
   id: string;
@@ -38,20 +40,36 @@ const initialState: GameSlice = {
 
 export const fetchQuestions = createAsyncThunk<GameQuestion[]>(
   "game/fetchQuestions",
-  async () => {
-    const response = await axios.get("/api/questions");
-    return response.data;
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await axios.get("/api/questions");
+      return response.data;
+    } catch (error: any) {
+      console.log(error.response.statusText);
+      return rejectWithValue(error.response.statusText);
+    }
   }
 );
 export const addAnswer = createAsyncThunk<CompleteAnswer, Answer>(
   "game/addAnswerById",
   async (payload: Answer) => {
-    const response = await axios.get(`/api/answers/${payload.id}`);
-    const gameAnswer = response.data as Answer;
+    const response: AxiosResponse<Answer> = await axios.get(
+      `/api/answers/${payload.id}`
+    );
+
+    const gameAnswer = response.data;
+
+    // .catch((err) => {
+    //   throw new Error("KEK");
+    // });
+
+    // const gameAnswer = response.data as Answer;
+
     const distance = calculateDistance(
       payload.coordinates,
       gameAnswer.coordinates
     );
+
     const yearsDifference = calculateYearsDifference(
       gameAnswer.year,
       payload.year
@@ -101,9 +119,13 @@ export const gameSlice = createSlice({
       })
       .addCase(fetchQuestions.rejected, (state, action) => {
         state.status = "failed";
-        state.error = action.error.message
-          ? action.error.message
-          : "Something went wrong";
+        console.log(action);
+        state.error =
+          action.payload && typeof action.payload === "string"
+            ? action.payload
+            : action.error.message
+            ? action.error.message
+            : "Something went wrong";
       })
       .addCase(addAnswer.pending, (state) => {
         state.status = "loading";

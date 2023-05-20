@@ -1,33 +1,32 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../utils/reduxHooks";
-import {
-  fetchQuestions,
-  selectCurrentQuestionNumber,
-} from "@/app/game/gameSlice";
+import { fetchQuestions } from "@/app/game/gameSlice";
 import { useRouter } from "next/navigation";
 
 const useGame = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();
-  const currentQuestionNumber = useAppSelector(
-    (state) => state.game.answers.length + 1
+  const currentQuestionIndex = useAppSelector(
+    (state) => state.game.answers.length
   );
 
-  const gameState = useAppSelector((state) => state.game.status);
-  const isStarted =
-    useAppSelector((state) => state.game.questions).length !== 0;
+  const game = useAppSelector((state) => state.game);
+
+  const { status, error } = game;
+  const gameIsOn = currentQuestionIndex > 0 && currentQuestionIndex < 4;
 
   useEffect(() => {
-    if (isStarted) {
-      router.push(`/game/question/${currentQuestionNumber}`);
+    if (gameIsOn) {
+      router.push(`/game/question/${currentQuestionIndex + 1}`);
+    } else {
+      dispatch(fetchQuestions());
     }
-    if (gameState === "idle") dispatch(fetchQuestions());
-  }, [dispatch, isStarted, router, currentQuestionNumber, gameState]);
+  }, [currentQuestionIndex, dispatch, router]);
 
   const checkResults = () => {};
-  return { checkResults, currentQuestionNumber };
+  return { checkResults, status, error };
 };
 
 export default useGame;

@@ -14,6 +14,8 @@ const useQuestion = () => {
     (state) => state.game.questions[currentQuestionNumber]
   );
 
+  const imageSrc = currentQuestion.imageSrc;
+
   const [year, setYear] = useState(1963);
   const [userMarker, setUserMarker] = useState<Coordinates | null>(null);
 
@@ -52,6 +54,7 @@ const useQuestion = () => {
     handleMapClick,
     year,
     userMarker,
+    imageSrc,
   };
 };
 

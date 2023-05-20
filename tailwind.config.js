@@ -17,6 +17,24 @@ module.exports = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      animation: {
+        "spin-slower": "spin 5s linear infinite",
+        "spin-slow": "spin 2s linear infinite",
+      },
+      keyframes: {
+        flicker: {
+          "0%, 100%": {
+            opacity: 1,
+          },
+          "33%": { opacity: 0 },
+        },
+        flickerAlt: {
+          "0%, 100%": {
+            opacity: 1,
+          },
+          "66%": { opacity: 0 },
+        },
+      },
     },
     fontFamily: {
       logo: ["var(--font-satisfy)", ...fontFamily.sans],

@@ -19,17 +19,13 @@ const QuestionResults = () => {
     yearDifference,
     yearScore,
     currentQuestionNumber,
+    imageSrc,
   } = useQuestionResults();
 
   return (
     <div className="flex h-full w-full">
       <div className="relative -z-10 h-full w-full bg-amber-100 ">
-        <Image
-          src="/test.jpg"
-          alt="Photo"
-          fill
-          className="object-contain p-4"
-        />
+        <Image src={imageSrc} alt="Photo" fill className="object-contain p-4" />
       </div>
       <div className="relative flex min-w-[432px] flex-col items-center justify-start gap-5 p-4">
         <div className="flex flex-col items-start">

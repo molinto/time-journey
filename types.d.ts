@@ -5,7 +5,7 @@ interface Coordinates {
 
 interface GameQuestion {
   id: string;
-  src: string;
+  imageSrc: string;
 }
 
 interface Answer {

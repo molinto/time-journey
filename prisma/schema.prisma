@@ -48,7 +48,7 @@ model Account {
 model Question {
   id          String @id @default(auto()) @map("_id") @db.ObjectId
   imageSrc    String
-  lat         String
+  lat
   lng         String
   year        Int
   description String
