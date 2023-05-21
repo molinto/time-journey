@@ -96,12 +96,6 @@ export const gameSlice = createSlice({
   initialState,
   reducers: {
     reset: () => initialState,
-    // addUserAnswer: (state, action: PayloadAction<Answer>) => {
-    //   if (state.userAnwers.find((answer) => answer.id === action.payload.id)) {
-    //     return;
-    //   }
-    //   state.userAnwers.push(action.payload);
-    // },
     startGame: (state) => ({ ...state, gameStarted: true }),
     addScore: (state, action: PayloadAction<number>) => ({
       ...state,
