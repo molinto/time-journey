@@ -8,6 +8,7 @@ import {
 } from "@react-google-maps/api";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import React from "react";
+import Spinner from "./Spinner";
 
 interface MapProps {
   handleMapClick?: (e: google.maps.MapMouseEvent) => void;
@@ -73,27 +74,11 @@ const GMap = ({ finalMarkers, handleMapClick, currentMarker }: MapProps) => {
   };
 
   return (
-    // <div
-    //   ref={mapContainerRef}
-    //   className={`absolute bottom-4 right-4 flex items-center transition-all duration-300 ${
-    //     expandMap ? "h-[70vh] w-[60vw]" : "h-[400px] w-[400px]"
-    //   }
-    //     ${error ? "rounded border-2 border-red-500" : ""}
-    //     `}
-    // >
-    //   {error && (
-    //     <div className="absolute -top-7 left-2 text-sm text-red-400">
-    //       Please pick a location!
-    //     </div>
-    //   )}
-    //   <button className="absolute left-2 top-2 z-30" onClick={toggleMapSize}>
-    //     <div className="rounded-sm bg-slate-100 p-0.5">
-    //       {expandMap ? <CollapseIcon /> : <ExpandIcon />}
-    //     </div>
-    //   </button>
     <>
       {!isLoaded ? (
-        <div className="">Loading...</div>
+        <div className="flex h-full w-full items-center justify-center rounded bg-green-100">
+          <Spinner />
+        </div>
       ) : (
         <GoogleMap
           ref={mapRef}

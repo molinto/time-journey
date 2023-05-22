@@ -1,12 +1,9 @@
 "use client";
 
-import React, { ChangeEvent, useRef, useState } from "react";
+import React from "react";
 import ImageUpload from "../components/ImageUpload";
 import Slider from "../components/Slider";
 import GMap from "../components/GMap";
-import useResizeTextarea from "../components/hooks/useResizeTextarea";
-import { Question } from "@prisma/client";
-import axios from "axios";
 import Button from "../components/Button";
 import useUploadForm from "../components/hooks/useUploadForm";
 import TextareaInputGroup from "../components/TextareaInputGroup";
@@ -22,13 +19,13 @@ const Upload = () => {
     handleDescriptionChange,
     year,
     description,
-    author,
+    license,
     location,
     locationError,
     descriptionError,
     imageUrl,
     imageError,
-    handleAuthorChange,
+    handleLicenseChange,
   } = useUploadForm();
 
   return (
@@ -66,9 +63,9 @@ const Upload = () => {
                 errorMessage={"Please provide description!"}
               />
               <TextInputGroup
-                label={"Who took this photo?"}
-                handleAuthorChange={handleAuthorChange}
-                value={author}
+                label={"How is this photo licensed?"}
+                handleLicenseChange={handleLicenseChange}
+                value={license}
               />
               <div className="flex flex-col gap-2">
                 <h3>What year the photo was taken?</h3>

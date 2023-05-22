@@ -22,7 +22,7 @@ const MapContainer = ({ children, error }: MapContainerProps) => {
   return (
     <div
       ref={mapContainerRef}
-      className={`absolute bottom-4 right-4 flex items-center transition-all duration-300 ${
+      className={`relative mt-auto flex items-center transition-all duration-300 ${
         expandMap ? "h-[70vh] w-[60vw]" : "h-[400px] w-[400px]"
       }
         ${error ? "rounded border-2 border-red-500" : ""}

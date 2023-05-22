@@ -5,7 +5,6 @@ import Button from "../Button";
 import Input from "../Input";
 import useRegisterForm from "../hooks/useRegisterForm";
 import { handleKeyDown } from "../utils/formUtils";
-import { IFormInputs } from "./LoginModal";
 import Modal from "./Modal";
 import OAuthButtons from "./OAuthButtons";
 import { useAppDispatch, useAppSelector } from "../utils/reduxHooks";
@@ -16,7 +15,7 @@ const RegisterModal = () => {
     register,
     formState: { errors },
     handleSubmit,
-  } = useForm<IFormInputs>();
+  } = useForm<AuthForm>();
 
   const { loading, submitRegisterForm } = useRegisterForm();
   const isOpen = useAppSelector((state) => state.modal.value === "register");

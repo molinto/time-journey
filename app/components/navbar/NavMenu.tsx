@@ -5,6 +5,7 @@ import MenuItem from "./MenuItem";
 import { useAppDispatch } from "../utils/reduxHooks";
 import { open } from "../modals/modalSlice";
 import { useRouter } from "next/navigation";
+import axios from "axios";
 
 interface NavMenuProps {
   isOpen: boolean;
@@ -29,16 +30,21 @@ const NavMenu = ({ isOpen }: NavMenuProps) => {
       <ul className="flex list-none flex-col md:flex-row md:items-center">
         <MenuItem title="Play" to="/game" />
         <MenuItem title="Rankings" to="/rankings" />
-        <MenuItem title="Upload" to="/upload" />
 
+        {/* <button onClick={() => axios.get("/api/uploadMany")}>
+          UPLOAD MANY
+        </button> */}
         {currentUser ? (
-          <MenuItem
-            title="Log Out"
-            onClick={() => {
-              signOut();
-              router.push("/");
-            }}
-          />
+          <>
+            <MenuItem title="Upload" to="/upload" />
+            <MenuItem
+              title="Log Out"
+              onClick={() => {
+                signOut();
+                router.push("/");
+              }}
+            />
+          </>
         ) : (
           <MenuItem title="LogIn" onClick={() => dispatch(open("login"))} />
         )}

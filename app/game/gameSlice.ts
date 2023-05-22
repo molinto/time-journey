@@ -45,8 +45,7 @@ export const fetchQuestions = createAsyncThunk<GameQuestion[]>(
       const response = await axios.get("/api/questions");
       return response.data;
     } catch (error: any) {
-      console.log(error.response.statusText);
-      return rejectWithValue(error.response.statusText);
+      return rejectWithValue(error.response.data);
     }
   }
 );
@@ -58,13 +57,6 @@ export const addAnswer = createAsyncThunk<CompleteAnswer, Answer>(
     );
 
     const gameAnswer = response.data;
-
-    // .catch((err) => {
-    //   throw new Error("KEK");
-    // });
-
-    // const gameAnswer = response.data as Answer;
-
     const distance = calculateDistance(
       payload.coordinates,
       gameAnswer.coordinates
@@ -113,7 +105,6 @@ export const gameSlice = createSlice({
       })
       .addCase(fetchQuestions.rejected, (state, action) => {
         state.status = "failed";
-        console.log(action);
         state.error =
           action.payload && typeof action.payload === "string"
             ? action.payload

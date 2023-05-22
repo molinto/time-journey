@@ -14,7 +14,7 @@ export async function POST(request: Request) {
   }
 
   const body = await request.json();
-  const { imageSrc, lat, lng, description, author, year } = body;
+  const { imageSrc, lat, lng, description, license, year } = body;
   const user = await prisma.user.findUnique({
     where: {
       email: email,
@@ -34,7 +34,7 @@ export async function POST(request: Request) {
       lng: lng,
       year: year,
       description: description,
-      author: author,
+      license: license,
       users: {
         connect: { id: user.id },
       },

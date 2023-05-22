@@ -18,3 +18,10 @@ interface Score {
   id: string;
   score: number;
 }
+
+interface AuthForm {
+  name?: string;
+  email: string;
+  password: string;
+  customError: string;
+}

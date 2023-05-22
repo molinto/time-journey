@@ -6,7 +6,7 @@ import axios from "axios";
 const useUploadForm = () => {
   const [year, setYear] = useState(1963);
   const [description, setDescription] = useState("");
-  const [author, setAuthor] = useState("");
+  const [license, setLicense] = useState("");
   const [location, setLocation] = useState<Coordinates>();
   const [imageUrl, setImageUrl] = useState("");
   const [imageError, setImageError] = useState(false);
@@ -59,7 +59,7 @@ const useUploadForm = () => {
       lng: location!.lng.toString(),
       imageSrc: imageUrl,
       year: year,
-      author: author,
+      license: license,
     };
 
     axios.post("/api/newQuestion", data);
@@ -75,8 +75,8 @@ const useUploadForm = () => {
     setImageUrl(res.info.secure_url);
   };
 
-  const handleAuthorChange = (e: React.ChangeEvent<HTMLInputElement>) =>
-    setAuthor(e.target.value);
+  const handleLicenseChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setLicense(e.target.value);
 
   return {
     handleMapClick,
@@ -87,13 +87,13 @@ const useUploadForm = () => {
     handleDescriptionChange,
     year,
     description,
-    author,
+    license,
     location,
     locationError,
     descriptionError,
     imageUrl,
     imageError,
-    handleAuthorChange,
+    handleLicenseChange,
   };
 };
 

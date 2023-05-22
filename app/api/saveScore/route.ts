@@ -35,12 +35,13 @@ export async function POST(request: Request) {
     const newScore = await prisma.score.create({
       data: {
         value: score,
-        userId: user?.id,
+        userId: user.id,
         questionId: id,
       },
     });
     return NextResponse.json(newScore);
   } catch (error) {
+    console.log(error);
     return new NextResponse("Could not save this score to database", {
       status: 400,
     });

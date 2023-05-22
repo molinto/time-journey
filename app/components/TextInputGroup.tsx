@@ -1,13 +1,13 @@
 interface TextareaInputGroupProps {
   label: string;
   value: string;
-  handleAuthorChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleLicenseChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const TextInputGroup = ({
   label,
   value,
-  handleAuthorChange,
+  handleLicenseChange: handleAuthorChange,
 }: TextareaInputGroupProps) => {
   return (
     <div className="flex flex-col gap-2">

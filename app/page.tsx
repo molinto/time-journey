@@ -1,10 +1,14 @@
-import GoogleMap from "./components/GMap";
-import Spinner from "./components/Spinner";
-
+import { rawData } from "@/lib/originalQuestions";
 export default function Home() {
-  return (
-    <div className="flex h-full items-center justify-center">
-      <Spinner />
-    </div>
-  );
+  const urlarray: string[] = [];
+  const urls = rawData.map((q) => {
+    const url = q.URL.split("//")[1].split("/")[0];
+
+    if (url && !urlarray.includes(url)) {
+      urlarray.push(url);
+    }
+    return url;
+  });
+
+  return <div className="flex h-full items-center justify-center"></div>;
 }

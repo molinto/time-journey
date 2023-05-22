@@ -14,6 +14,8 @@ const useQuestion = () => {
     (state) => state.game.questions[currentQuestionNumber]
   );
 
+  const loading = useAppSelector((state) => state.game.status === "loading");
+
   const imageSrc = currentQuestion.imageSrc;
 
   const [year, setYear] = useState(1963);
@@ -44,7 +46,6 @@ const useQuestion = () => {
       coordinates: userMarker,
     };
     await dispatch(addAnswer(answer));
-
     router.push(`/game/question/${params.slug}/results`);
   };
 
@@ -55,6 +56,7 @@ const useQuestion = () => {
     year,
     userMarker,
     imageSrc,
+    loading,
   };
 };
 

@@ -48,11 +48,11 @@ model Account {
 model Question {
   id          String @id @default(auto()) @map("_id") @db.ObjectId
   imageSrc    String
-  lat
+  lat         String
   lng         String
   year        Int
   description String
-  author      String
+  license     String
 
   userIDs String[] @db.ObjectId
   users   User[]   @relation(fields: [userIDs], references: [id])
@@ -65,5 +65,5 @@ model Score {
   value      Int
   questionId String
 
-  @@unique([questionId, userId])
+  @@unique([questionId])
 }

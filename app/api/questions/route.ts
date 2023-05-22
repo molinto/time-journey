@@ -29,11 +29,20 @@ export async function GET(request: Request) {
     pipeline: [
       {
         $match: {
-          $expr: {
-            $not: {
-              $in: [{ $toObjectId: id }, "$userIDs"],
+          $or: [
+            {
+              userIDs: {
+                $exists: false,
+              },
             },
-          },
+            {
+              $expr: {
+                $not: {
+                  $in: [{ $toObjectId: id }, "$userIDs"],
+                },
+              },
+            },
+          ],
         },
       },
       {
