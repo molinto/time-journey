@@ -7,11 +7,11 @@ const useQuestionResults = () => {
   const currentQuestionNumber = parseInt(params.slug);
 
   const answer = useAppSelector(
-    (state) => state.game.answers[currentQuestionNumber - 1]
+    (state) => state.answers.value[currentQuestionNumber - 1]
   );
 
   const imageSrc = useAppSelector(
-    (state) => state.game.questions[currentQuestionNumber - 1].imageSrc
+    (state) => state.questions.value[currentQuestionNumber - 1].imageSrc
   );
 
   const {

@@ -1,7 +1,7 @@
 import { ChangeEvent, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../utils/reduxHooks";
 import { useRouter, useParams } from "next/navigation";
-import { addAnswer } from "@/app/game/gameSlice";
+import { addAnswer } from "@/app/game/answersSlice";
 
 const useQuestion = () => {
   const router = useRouter();
@@ -11,12 +11,12 @@ const useQuestion = () => {
   const currentQuestionNumber = parseInt(params.slug) - 1;
 
   const currentQuestion = useAppSelector(
-    (state) => state.game.questions[currentQuestionNumber]
+    (state) => state.questions?.value[currentQuestionNumber]
   );
 
-  const loading = useAppSelector((state) => state.game.status === "loading");
-
-  const imageSrc = currentQuestion.imageSrc;
+  const loadingResults = useAppSelector(
+    (state) => state.answers.status === "loading"
+  );
 
   const [year, setYear] = useState(1963);
   const [userMarker, setUserMarker] = useState<Coordinates | null>(null);
@@ -38,7 +38,7 @@ const useQuestion = () => {
   ) => {
     e.preventDefault();
 
-    if (!userMarker) return;
+    if (!userMarker || !currentQuestion) return;
 
     const answer: Answer = {
       id: currentQuestion.id,
@@ -55,8 +55,7 @@ const useQuestion = () => {
     handleMapClick,
     year,
     userMarker,
-    imageSrc,
-    loading,
+    loading: loadingResults,
   };
 };
 

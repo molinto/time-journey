@@ -42,8 +42,5 @@ export async function POST(request: Request) {
     return NextResponse.json(newScore);
   } catch (error) {
     console.log(error);
-    return new NextResponse("Could not save this score to database", {
-      status: 400,
-    });
   }
 }

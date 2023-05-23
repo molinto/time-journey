@@ -25,7 +25,7 @@ const Game = () => {
 
   return (
     <div className="flex h-full flex-col items-center justify-center">
-      {status === "loading" ? (
+      {/* {status === "loading" ? (
         <div className="flex flex-col items-center justify-center">
           <Spinner />
         </div>
@@ -35,7 +35,10 @@ const Game = () => {
         <Link href="/game/question/1">
           <Button label={"Start"} type={"button"} />
         </Link>
-      )}
+      )} */}
+      <Link href="/game/question/1">
+        <Button label={"Start"} type={"button"} />
+      </Link>
     </div>
   );
 };

@@ -5,10 +5,9 @@ import { useRef, useState } from "react";
 
 interface MapContainerProps {
   children: React.ReactNode;
-  error?: boolean;
 }
 
-const MapContainer = ({ children, error }: MapContainerProps) => {
+const MapContainer = ({ children }: MapContainerProps) => {
   const [expandMap, setExpandMap] = useState(false);
 
   const mapContainerRef = useRef<HTMLDivElement>(null);
@@ -22,17 +21,10 @@ const MapContainer = ({ children, error }: MapContainerProps) => {
   return (
     <div
       ref={mapContainerRef}
-      className={`relative mt-auto flex items-center transition-all duration-300 ${
+      className={`absolute bottom-4 right-4 flex items-center transition-all duration-300 ${
         expandMap ? "h-[70vh] w-[60vw]" : "h-[400px] w-[400px]"
-      }
-        ${error ? "rounded border-2 border-red-500" : ""}
-        `}
+      }`}
     >
-      {error && (
-        <div className="absolute -top-7 left-2 text-sm text-red-400">
-          Please pick a location!
-        </div>
-      )}
       <button className="absolute left-2 top-2 z-30" onClick={toggleMapSize}>
         <div className="rounded-sm bg-slate-100 p-0.5">
           {expandMap ? <CollapseIcon /> : <ExpandIcon />}

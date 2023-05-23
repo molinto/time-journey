@@ -1,11 +1,10 @@
 import { FieldErrors, UseFormRegister } from "react-hook-form";
-import { IFormInputs } from "./modals/LoginModal";
 
 interface InputProps {
   id: "email" | "password" | "name";
   disabled?: boolean;
   type?: string;
-  register: UseFormRegister<IFormInputs>;
+  register: UseFormRegister<AuthForm>;
   errors: FieldErrors;
   pattern?: {
     value: RegExp;

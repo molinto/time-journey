@@ -1,39 +1,38 @@
 "use client";
 
 import Button from "@/app/components/Button";
-import GMap from "@/app/components/GMap";
 import {
   useAppDispatch,
   useAppSelector,
 } from "@/app/components/utils/reduxHooks";
-import { useDispatch } from "react-redux";
-import { fetchQuestions, reset, selectTotalScore } from "../gameSlice";
+import { selectTotalScore } from "../answersSlice";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import axios from "axios";
 
 const Summary = () => {
-  const dispatch = useAppDispatch();
   const totalScore = useAppSelector(selectTotalScore);
   const router = useRouter();
 
   const firstQuestionId = useAppSelector(
-    (state) => state.game?.questions[0]?.id
+    (state) => state.questions.value[0].id
   );
+  const gameFinished = useAppSelector(
+    (state) => state.answers.value.length === 5
+  );
+
   useEffect(() => {
-    if (!firstQuestionId || totalScore === null || totalScore === undefined)
-      return;
+    if (!gameFinished) return;
 
     const data = {
       id: firstQuestionId,
       score: totalScore,
     };
+
     axios.post("/api/saveScore", data);
-  }, [firstQuestionId, totalScore]);
+  }, [firstQuestionId, gameFinished, totalScore]);
 
   const newGame = async () => {
-    dispatch(reset());
-    await dispatch(fetchQuestions());
     router.push("/game");
   };
 

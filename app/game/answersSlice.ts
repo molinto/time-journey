@@ -7,8 +7,6 @@ import {
   calculateYearsDifference,
   calculateYearsScore,
 } from "../components/utils/gameUtils";
-import { error } from "console";
-import { RejectedActionFromAsyncThunk } from "@reduxjs/toolkit/dist/matchers";
 
 interface CompleteAnswer {
   id: string;
@@ -22,33 +20,20 @@ interface CompleteAnswer {
   yearScore: number;
 }
 
-interface GameSlice {
-  questions: GameQuestion[];
-  answers: CompleteAnswer[];
+interface AnswersSlice {
+  value: CompleteAnswer[];
   status: "idle" | "loading" | "succeeded" | "failed";
   error: string | null;
   score: number;
 }
 
-const initialState: GameSlice = {
-  questions: [],
-  answers: [],
+const initialState: AnswersSlice = {
+  value: [],
   status: "idle",
   error: null,
   score: 0,
 };
 
-export const fetchQuestions = createAsyncThunk<GameQuestion[]>(
-  "game/fetchQuestions",
-  async (_, { rejectWithValue }) => {
-    try {
-      const response = await axios.get("/api/questions");
-      return response.data;
-    } catch (error: any) {
-      return rejectWithValue(error.response.data);
-    }
-  }
-);
 export const addAnswer = createAsyncThunk<CompleteAnswer, Answer>(
   "game/addAnswerById",
   async (payload: Answer) => {
@@ -96,30 +81,14 @@ export const gameSlice = createSlice({
   },
   extraReducers(builder) {
     builder
-      .addCase(fetchQuestions.pending, (state, action) => {
-        state.status = "loading";
-      })
-      .addCase(fetchQuestions.fulfilled, (state, action) => {
-        state.status = "succeeded";
-        state.questions = state.questions.concat(action.payload);
-      })
-      .addCase(fetchQuestions.rejected, (state, action) => {
-        state.status = "failed";
-        state.error =
-          action.payload && typeof action.payload === "string"
-            ? action.payload
-            : action.error.message
-            ? action.error.message
-            : "Something went wrong";
-      })
       .addCase(addAnswer.pending, (state) => {
         state.status = "loading";
       })
       .addCase(addAnswer.fulfilled, (state, action) => {
         state.status = "succeeded";
-        if (state.answers.find((answer) => answer.id === action.payload.id))
+        if (state.value.find((answer) => answer.id === action.payload.id))
           return;
-        state.answers = state.answers.concat(action.payload);
+        state.value = state.value.concat(action.payload);
       })
       .addCase(addAnswer.rejected, (state, action) => {
         state.status = "failed";
@@ -134,15 +103,9 @@ export const { reset, startGame, addScore } = gameSlice.actions;
 
 export default gameSlice.reducer;
 
-export const selectQuestionById = (state: RootState, index: number) =>
-  state.game.questions[index];
-
-export const selectCurrentQuestionNumber = (state: RootState) =>
-  state.game.answers.length;
-
 export const selectTotalScore = (state: RootState) => {
   let total = 0;
-  state.game.answers.forEach((answer) => {
+  state.answers.value.forEach((answer) => {
     total = total + answer.yearScore + answer.distanceScore;
   });
   return total;

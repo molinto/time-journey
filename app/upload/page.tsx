@@ -85,7 +85,6 @@ const Upload = () => {
                       Please point the place on the map!
                     </div>
                   )}
-                  {/* <div className="h-full w-full bg-green-300"></div> */}
                   <GMap
                     handleMapClick={handleMapClick}
                     currentMarker={location}
