@@ -19,13 +19,20 @@ const QuestionLayout = ({ children }: { children: React.ReactNode }) => {
   );
 
   return loading ? (
-    <Spinner />
+    <div className="flex h-full w-full items-center justify-center py-4">
+      <Spinner />
+    </div>
   ) : (
-    <div className="flex h-full w-full">
-      <div className="relative -z-10 h-full w-full bg-amber-100 ">
-        <Image src={imageSrc} alt="Photo" fill className="object-contain p-4" />
+    <div className="flex w-full flex-col lg:h-full lg:flex-row">
+      <div className="relative -z-10 h-[60vh] w-full bg-amber-100  lg:h-full">
+        <Image
+          src={imageSrc}
+          alt="Photo"
+          fill
+          className="object-contain px-4 lg:p-4"
+        />
       </div>
-      <div className="relative flex min-w-[432px] flex-col items-center justify-start gap-5 p-4">
+      <div className="relative flex shrink-0  flex-col items-center justify-start gap-5 p-4 lg:basis-[460px]  ">
         {children}
       </div>
     </div>

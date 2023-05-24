@@ -8,18 +8,6 @@ import {
   calculateYearsScore,
 } from "../components/utils/gameUtils";
 
-interface CompleteAnswer {
-  id: string;
-  userYear: number;
-  gameYear: number;
-  userLocation: Coordinates;
-  gameLocation: Coordinates;
-  distance: number;
-  yearDifference: number;
-  distanceScore: number;
-  yearScore: number;
-}
-
 interface AnswersSlice {
   value: CompleteAnswer[];
   status: "idle" | "loading" | "succeeded" | "failed";
@@ -34,14 +22,15 @@ const initialState: AnswersSlice = {
   score: 0,
 };
 
-export const addAnswer = createAsyncThunk<CompleteAnswer, Answer>(
+export const addAnswer = createAsyncThunk<CompleteAnswer, UserAnswer>(
   "game/addAnswerById",
-  async (payload: Answer) => {
-    const response: AxiosResponse<Answer> = await axios.get(
+  async (payload: UserAnswer) => {
+    const response: AxiosResponse<GameAnswer> = await axios.get(
       `/api/answers/${payload.id}`
     );
 
     const gameAnswer = response.data;
+
     const distance = calculateDistance(
       payload.coordinates,
       gameAnswer.coordinates
@@ -62,6 +51,8 @@ export const addAnswer = createAsyncThunk<CompleteAnswer, Answer>(
       yearDifference: yearsDifference,
       distanceScore: calculateDistanceScore(distance),
       yearScore: calculateYearsScore(yearsDifference),
+      description: gameAnswer.description,
+      license: gameAnswer.license,
     };
 
     return completeAnswer;

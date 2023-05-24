@@ -1,12 +1,5 @@
-import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { RootState } from "../store";
-import axios, { AxiosResponse } from "axios";
-import {
-  calculateDistance,
-  calculateDistanceScore,
-  calculateYearsDifference,
-  calculateYearsScore,
-} from "../components/utils/gameUtils";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
 
 interface QuestionsSlice {
   value: GameQuestion[];
@@ -37,7 +30,6 @@ export const questionsSlice = createSlice({
   initialState,
   reducers: {
     reset: () => initialState,
-    // startGame: (state) => ({ ...state, gameStarted: true }),
   },
   extraReducers(builder) {
     builder

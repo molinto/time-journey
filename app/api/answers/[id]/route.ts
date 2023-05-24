@@ -29,6 +29,7 @@ export async function GET(request: Request, { params }: Params) {
       statusText: "Question not found",
     });
   }
+
   const updatedQuestion = await prisma.question.update({
     where: {
       id: params.id,
@@ -42,15 +43,15 @@ export async function GET(request: Request, { params }: Params) {
     },
   });
 
-  console.log(updatedQuestion);
-
-  const answer = {
+  const answer: GameAnswer = {
     id: params.id,
     year: res.year,
     coordinates: {
       lat: parseFloat(res.lat),
       lng: parseFloat(res.lng),
     },
+    description: res.description,
+    license: res.license,
   };
 
   return NextResponse.json(answer);

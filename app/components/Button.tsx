@@ -19,7 +19,7 @@ const Button = ({
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className={`relative  flex w-full items-center justify-center rounded-lg border p-3 transition-all disabled:cursor-not-allowed disabled:opacity-70 md:max-w-md 
+      className={`relative flex w-full items-center justify-center rounded-lg border p-3 transition-all disabled:cursor-not-allowed disabled:opacity-70 md:max-w-md 
       ${
         outline
           ? "border-black bg-transparent hover:bg-neutral-200 "

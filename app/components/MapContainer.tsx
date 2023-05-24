@@ -21,11 +21,16 @@ const MapContainer = ({ children }: MapContainerProps) => {
   return (
     <div
       ref={mapContainerRef}
-      className={`absolute bottom-4 right-4 flex items-center transition-all duration-300 ${
-        expandMap ? "h-[70vh] w-[60vw]" : "h-[400px] w-[400px]"
+      className={`h-[40vh] w-full transition-all duration-300 lg:absolute lg:bottom-4 lg:right-4 lg:z-20 ${
+        expandMap
+          ? "h-[calc(100vh-80px)] w-[70vw]"
+          : "h-[40vh] min-h-[30rem] w-full lg:h-1/2 lg:min-h-[10rem] lg:w-[428px]"
       }`}
     >
-      <button className="absolute left-2 top-2 z-30" onClick={toggleMapSize}>
+      <button
+        className="absolute left-2 top-2 z-30 hidden lg:block"
+        onClick={toggleMapSize}
+      >
         <div className="rounded-sm bg-slate-100 p-0.5">
           {expandMap ? <CollapseIcon /> : <ExpandIcon />}
         </div>

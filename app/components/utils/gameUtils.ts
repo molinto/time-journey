@@ -20,10 +20,10 @@ export const formatDistance = (distance: number | null) => {
   if (!distance) return null;
   const formatDistance =
     distance >= 100
-      ? `${distance.toFixed(0)}km`
+      ? `${distance.toFixed(0)} km`
       : distance >= 1
-      ? `${distance.toFixed(1)}km`
-      : `${(distance * 1000).toFixed(0)}m`;
+      ? `${distance.toFixed(1)} km`
+      : `${(distance * 1000).toFixed(0)} m`;
 
   return formatDistance;
 };

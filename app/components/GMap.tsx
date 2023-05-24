@@ -7,6 +7,7 @@ import {
   useLoadScript,
 } from "@react-google-maps/api";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+
 import React from "react";
 import Spinner from "./Spinner";
 
@@ -15,24 +16,31 @@ interface MapProps {
   currentMarker?: Coordinates | null;
   finalMarkers?: {
     userMarker: Coordinates;
-    rightMarker: Coordinates;
+    gameMarker: Coordinates;
   };
 }
 
 type LatLngLiteral = google.maps.LatLngLiteral;
 type MapOptions = google.maps.MapOptions;
+type MapMap = google.maps.Map;
 
 const GMap = ({ finalMarkers, handleMapClick, currentMarker }: MapProps) => {
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API!,
   });
 
-  const mapRef = useRef<GoogleMap>(null);
+  const mapRef = useRef<MapMap | null>(null);
+
+  const onLoad = useCallback((map: any) => {
+    mapRef.current = map;
+    return;
+  }, []);
 
   const center = useMemo<LatLngLiteral>(
     () => ({ lat: 18.52043, lng: 73.856743 }),
     []
   );
+
   const options = useMemo<MapOptions>(
     () => ({
       mapId: "4e2d8b82f27a9603",
@@ -54,19 +62,14 @@ const GMap = ({ finalMarkers, handleMapClick, currentMarker }: MapProps) => {
     []
   );
 
-  const onLoad = React.useCallback(
-    function callback(map: google.maps.Map) {
-      if (!finalMarkers) return;
+  useEffect(() => {
+    if (!finalMarkers) return;
 
-      const bounds = new window.google.maps.LatLngBounds(
-        finalMarkers.rightMarker
-      );
-      bounds.extend(finalMarkers.userMarker);
+    const bounds = new window.google.maps.LatLngBounds(finalMarkers.gameMarker);
+    bounds.extend(finalMarkers.userMarker);
 
-      map.fitBounds(bounds);
-    },
-    [finalMarkers]
-  );
+    mapRef.current?.fitBounds(bounds);
+  }, [finalMarkers]);
 
   const lineSymbol = {
     path: "M 0,0 0,1",
@@ -81,7 +84,6 @@ const GMap = ({ finalMarkers, handleMapClick, currentMarker }: MapProps) => {
         </div>
       ) : (
         <GoogleMap
-          ref={mapRef}
           onLoad={onLoad}
           mapContainerClassName="w-full h-full rounded"
           center={center}
@@ -89,7 +91,7 @@ const GMap = ({ finalMarkers, handleMapClick, currentMarker }: MapProps) => {
           onClick={handleMapClick}
           options={options}
         >
-          {currentMarker ? (
+          {currentMarker && !finalMarkers ? (
             <MarkerF
               position={currentMarker}
               icon={{
@@ -99,7 +101,7 @@ const GMap = ({ finalMarkers, handleMapClick, currentMarker }: MapProps) => {
           ) : null}
 
           {finalMarkers ? (
-            <React.Fragment key={finalMarkers.rightMarker.lat.toString()}>
+            <React.Fragment key={finalMarkers.gameMarker.lat.toString()}>
               <MarkerF
                 position={finalMarkers.userMarker}
                 icon={{
@@ -107,13 +109,13 @@ const GMap = ({ finalMarkers, handleMapClick, currentMarker }: MapProps) => {
                 }}
               />
               <MarkerF
-                position={finalMarkers.rightMarker}
+                position={finalMarkers.gameMarker}
                 icon={{
                   url: "http://maps.google.com/mapfiles/ms/icons/red.png",
                 }}
               />
               <PolylineF
-                path={[finalMarkers.rightMarker, finalMarkers.userMarker]}
+                path={[finalMarkers.gameMarker, finalMarkers.userMarker]}
                 options={{
                   strokeWeight: 0,
                   strokeColor: "red",

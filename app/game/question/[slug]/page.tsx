@@ -6,45 +6,47 @@ import Button from "@/app/components/Button";
 import GMap from "@/app/components/GMap";
 import MapContainer from "@/app/components/MapContainer";
 import Spinner from "@/app/components/Spinner";
-import { useAppSelector } from "@/app/components/utils/reduxHooks";
+import Results from "./Results";
 
 const Question = () => {
   const {
-    userMarker,
+    marker,
     handleYearSlider,
     handleMapClick,
     year,
     handleSubmitQuestion,
-    loading,
+    resultsLoading,
+    answer,
+    finalMarkers,
   } = useQuestion();
 
-  const questionsLoading = useAppSelector(
-    (state) => state.questions.status === "loading"
-  );
-
-  return questionsLoading ? (
-    <Spinner />
-  ) : (
-    <>
-      {loading ? (
-        <div className="pt-20">
+  return (
+    <div className="flex w-full flex-col items-center gap-5">
+      <MapContainer>
+        <GMap
+          currentMarker={marker}
+          finalMarkers={finalMarkers}
+          handleMapClick={handleMapClick}
+        />
+      </MapContainer>
+      {resultsLoading ? (
+        <div className="lg:pt-20">
           <Spinner />
         </div>
+      ) : answer ? (
+        <Results {...answer} />
       ) : (
         <>
           <Slider year={year} onChange={handleYearSlider} />
           <Button
             type="button"
-            label={userMarker ? "Submit!" : "Place a pin on the map!"}
-            disabled={!userMarker}
+            label={marker ? "Submit!" : "Place a pin on the map!"}
+            disabled={!marker}
             onClick={handleSubmitQuestion}
           />
         </>
       )}
-      <MapContainer>
-        <GMap currentMarker={userMarker} handleMapClick={handleMapClick} />
-      </MapContainer>
-    </>
+    </div>
   );
 };
 

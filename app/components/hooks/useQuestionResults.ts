@@ -10,10 +10,6 @@ const useQuestionResults = () => {
     (state) => state.answers.value[currentQuestionNumber - 1]
   );
 
-  const imageSrc = useAppSelector(
-    (state) => state.questions.value[currentQuestionNumber - 1].imageSrc
-  );
-
   const {
     gameLocation,
     gameYear,
@@ -37,7 +33,6 @@ const useQuestionResults = () => {
     yearDifference,
     yearScore,
     currentQuestionNumber,
-    imageSrc,
   };
 };
 

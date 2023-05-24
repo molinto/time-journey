@@ -1973,7 +1973,7 @@ export const rawData = [
   },
   {
     No: "200",
-    URL: "http://lh3.googleusercontent.com/TXtKXmcQRdw2zPHaWhmQCbSLP3XWNhmQcfBMzUuX67LZ4kV_p3hX682rV_2c6Gd5Sg=s1200",
+    URL: "https://lh3.googleusercontent.com/TXtKXmcQRdw2zPHaWhmQCbSLP3XWNhmQcfBMzUuX67LZ4kV_p3hX682rV_2c6Gd5Sg=s1200",
     Year: "1905",
     Location: { lat: 41.402645942668265, lng: 2.1732971179420844 },
     Description:

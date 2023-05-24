@@ -6,20 +6,28 @@ import { useAppDispatch } from "../utils/reduxHooks";
 import { open } from "../modals/modalSlice";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+import { useEffect, useRef } from "react";
+import useClickOutside from "../hooks/useClickOutside";
 
 interface NavMenuProps {
   isOpen: boolean;
+  closeMenu: () => void;
 }
 
-const NavMenu = ({ isOpen }: NavMenuProps) => {
+const NavMenu = ({ closeMenu, isOpen }: NavMenuProps) => {
   const dispatch = useAppDispatch();
   const { data: session } = useSession();
+  const currentUser = session?.user;
+
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useClickOutside(dropdownRef, closeMenu);
 
   const router = useRouter();
-  const currentUser = session?.user;
 
   return (
     <div
+      ref={dropdownRef}
       className={
         "flex-grow items-center overflow-hidden md:static md:flex md:bg-transparent" +
         (isOpen
@@ -30,10 +38,6 @@ const NavMenu = ({ isOpen }: NavMenuProps) => {
       <ul className="flex list-none flex-col md:flex-row md:items-center">
         <MenuItem title="Play" to="/game" />
         <MenuItem title="Rankings" to="/rankings" />
-
-        {/* <button onClick={() => axios.get("/api/uploadMany")}>
-          UPLOAD MANY
-        </button> */}
         {currentUser ? (
           <>
             <MenuItem title="Upload" to="/upload" />

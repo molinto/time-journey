@@ -28,6 +28,7 @@ yarn-error.log*
 .env*.local 
 .env
 
+originalQuestions.ts
 
 # vercel
 .vercel
