@@ -41,14 +41,14 @@ const LoginModal = () => {
         />
         <Button label="Log in" type="submit" />
       </form>
-      <hr />
+      <hr className="border-dark-sky" />
       <OAuthButtons />
     </div>
   );
 
   const footerContent = (
     <div className="flex items-center justify-between">
-      <p>Don:&apos;t have an account yet?</p>
+      <p>Don&apos;t have an account yet?</p>
       <a
         href=""
         className="underline transition duration-200 hover:text-gray-400"

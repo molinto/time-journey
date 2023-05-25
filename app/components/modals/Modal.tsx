@@ -45,21 +45,21 @@ const Modal = ({ isOpen, title, body, footer, disabled }: ModalProps) => {
     >
       <div
         ref={modalRef}
-        className={`flex h-full w-full flex-col gap-3 rounded-md bg-white p-3  duration-300 md:h-auto md:w-[500px]
+        className={`flex h-full w-full flex-col gap-3 rounded-md border border-dark-sky bg-sky-blue p-3  duration-300 md:h-auto md:w-[500px]
       ${isShown ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"}
       `}
       >
         <div className="flex items-center justify-center py-2">
           <button
             onClick={handleClose}
-            className="absolute left-3 rounded-full p-1.5 transition-colors duration-200 hover:bg-gray-200"
+            className="absolute left-3 rounded-full p-1.5 transition-colors duration-200 hover:bg-pale-amber"
           >
             <CloseIcon />
           </button>
           <h2 className="text-lg">{title}</h2>
         </div>
         <div className="">{body}</div>
-        <hr />
+        <hr className="border-dark-sky" />
         <div className="">{footer}</div>
       </div>
     </div>

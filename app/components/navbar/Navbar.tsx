@@ -1,11 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import MenuIcon from "../icons/MenuIcon";
 import Logo from "./Logo";
 import NavMenu from "./NavMenu";
 import User from "./User";
-import useClickOutside from "../hooks/useClickOutside";
 import { usePathname } from "next/navigation";
 
 const Navbar = () => {
@@ -23,11 +22,9 @@ const Navbar = () => {
   useEffect(() => {
     closeMenu();
   }, [path]);
-  // const buttonRef = useRef<HTMLButtonElement>(null);
-  // useClickOutside(buttonRef, closeMenu);
 
   return (
-    <nav className="fixed z-10 flex h-12 w-full items-center justify-between border-b bg-slate-100 px-5 shadow-sm md:h-16">
+    <nav className="fixed z-10 flex h-12 w-full items-center justify-between bg-dark-sky px-2 text-amber-50 shadow-sm md:h-16">
       <Logo />
       <div className="relative flex items-center justify-between px-4">
         <button

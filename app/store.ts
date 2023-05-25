@@ -1,13 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import modalReducer from "./components/modals/modalSlice";
 import answersReducer from "./game/answersSlice";
-import queestionsReducer from "./game/questionsSlice";
+import questionsReducer from "./game/questionsSlice";
 
 export const store = configureStore({
   reducer: {
     modal: modalReducer,
     answers: answersReducer,
-    questions: queestionsReducer,
+    questions: questionsReducer,
   },
 });
 

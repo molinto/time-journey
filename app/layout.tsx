@@ -1,4 +1,4 @@
-import { Roboto_Mono, Satisfy } from "next/font/google";
+import { Roboto_Mono, Satisfy, Poppins } from "next/font/google";
 import LoginModal from "./components/modals/LoginModal";
 import RegisterModal from "./components/modals/RegisterModal";
 import Navbar from "./components/navbar/Navbar";
@@ -7,7 +7,7 @@ import { NextAuthProvider } from "./providers/SessionProvider";
 import ToasterProvider from "./providers/ToasterProvider";
 import { ReduxProvider } from "./providers/ReduxProvider";
 
-const roboto = Roboto_Mono({ weight: "400", subsets: ["latin"] });
+const poppins = Poppins({ weight: "400", subsets: ["latin"] });
 const satisfy = Satisfy({
   weight: "400",
   subsets: ["latin"],
@@ -26,7 +26,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${roboto.className} ${satisfy.variable}`}>
+    <html lang="en" className={`${poppins.className} ${satisfy.variable}`}>
       <body>
         <NextAuthProvider>
           <ReduxProvider>
@@ -34,7 +34,7 @@ export default function RootLayout({
             <Navbar />
             <LoginModal />
             <RegisterModal />
-            <main className="flex h-full flex-col items-center justify-start pt-12 md:pt-16">
+            <main className="flex h-full flex-col items-center justify-start bg-pale-amber pt-12 md:pt-16">
               {children}
             </main>
           </ReduxProvider>

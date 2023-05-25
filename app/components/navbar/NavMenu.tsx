@@ -5,7 +5,6 @@ import MenuItem from "./MenuItem";
 import { useAppDispatch } from "../utils/reduxHooks";
 import { open } from "../modals/modalSlice";
 import { useRouter } from "next/navigation";
-import axios from "axios";
 import { useEffect, useRef } from "react";
 import useClickOutside from "../hooks/useClickOutside";
 
@@ -23,8 +22,6 @@ const NavMenu = ({ closeMenu, isOpen }: NavMenuProps) => {
 
   useClickOutside(dropdownRef, closeMenu);
 
-  const router = useRouter();
-
   return (
     <div
       ref={dropdownRef}
@@ -35,7 +32,7 @@ const NavMenu = ({ closeMenu, isOpen }: NavMenuProps) => {
           : " hidden")
       }
     >
-      <ul className="flex list-none flex-col md:flex-row md:items-center">
+      <ul className="flex list-none flex-col md:flex-row md:items-center lg:gap-5 lg:px-5">
         <MenuItem title="Play" to="/game" />
         <MenuItem title="Rankings" to="/rankings" />
         {currentUser ? (
@@ -44,8 +41,7 @@ const NavMenu = ({ closeMenu, isOpen }: NavMenuProps) => {
             <MenuItem
               title="Log Out"
               onClick={() => {
-                signOut();
-                router.push("/");
+                signOut({ callbackUrl: "http://localhost:3000/" });
               }}
             />
           </>

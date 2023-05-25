@@ -1,12 +1,9 @@
 import { ChangeEvent, useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../utils/reduxHooks";
-import { useRouter, useParams } from "next/navigation";
+import { useParams } from "next/navigation";
 import { addAnswer } from "@/app/game/answersSlice";
-import { formatDistance } from "../utils/gameUtils";
-import { Smokum } from "next/font/google";
 
 const useQuestion = () => {
-  const router = useRouter();
   const params = useParams();
   const dispatch = useAppDispatch();
 
@@ -31,11 +28,13 @@ const useQuestion = () => {
   const questionsLoading = useAppSelector(
     (state) => state.questions.status === "loading"
   );
+
   const resultsLoading = useAppSelector(
     (state) => state.answers.status === "loading"
   );
 
   const [year, setYear] = useState(1963);
+  const [yearChanged, setYearChanged] = useState(false);
   const [marker, setMarker] = useState<Coordinates | null>(null);
 
   const handleMapClick = (e: google.maps.MapMouseEvent) => {
@@ -54,6 +53,7 @@ const useQuestion = () => {
   }, []);
 
   const handleYearSlider = (event: ChangeEvent<HTMLInputElement>) => {
+    setYearChanged(true);
     setYear(parseInt(event.currentTarget.value));
   };
 
@@ -84,6 +84,7 @@ const useQuestion = () => {
     answer,
     finalMarkers,
     currentQuestionNumber,
+    yearChanged,
   };
 };
 

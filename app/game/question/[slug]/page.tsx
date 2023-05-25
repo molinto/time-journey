@@ -12,6 +12,7 @@ const Question = () => {
   const {
     marker,
     handleYearSlider,
+    yearChanged,
     handleMapClick,
     year,
     handleSubmitQuestion,
@@ -21,7 +22,7 @@ const Question = () => {
   } = useQuestion();
 
   return (
-    <div className="flex w-full flex-col items-center gap-5">
+    <div className="flex w-full flex-col items-center gap-6">
       <MapContainer>
         <GMap
           currentMarker={marker}
@@ -31,13 +32,13 @@ const Question = () => {
       </MapContainer>
       {resultsLoading ? (
         <div className="lg:pt-20">
-          <Spinner />
+          <Spinner blue />
         </div>
       ) : answer ? (
         <Results {...answer} />
       ) : (
         <>
-          <Slider year={year} onChange={handleYearSlider} />
+          <Slider ping={!yearChanged} year={year} onChange={handleYearSlider} />
           <Button
             type="button"
             label={marker ? "Submit!" : "Place a pin on the map!"}

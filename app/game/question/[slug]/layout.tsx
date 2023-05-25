@@ -18,21 +18,25 @@ const QuestionLayout = ({ children }: { children: React.ReactNode }) => {
     (state) => state.questions.status === "loading"
   );
 
-  return loading ? (
-    <div className="flex h-full w-full items-center justify-center py-4">
-      <Spinner />
-    </div>
-  ) : (
+  return (
     <div className="flex w-full flex-col lg:h-full lg:flex-row">
-      <div className="relative -z-10 h-[60vh] w-full bg-amber-100  lg:h-full">
-        <Image
-          src={imageSrc}
-          alt="Photo"
-          fill
-          className="object-contain px-4 lg:p-4"
-        />
+      <div className="relative h-[60vh] w-full lg:h-full">
+        {loading ? (
+          <div className="flex h-full w-full items-center justify-center py-4">
+            <Spinner />
+          </div>
+        ) : (
+          <Image
+            src={imageSrc}
+            alt="Photo"
+            fill
+            priority
+            sizes="(max-width: 768px) 100vw, 75vw"
+            className="z-10 object-contain px-4 py-2 lg:p-4"
+          />
+        )}
       </div>
-      <div className="relative flex shrink-0  flex-col items-center justify-start gap-5 p-4 lg:basis-[460px]  ">
+      <div className="relative flex shrink-0 grow-0 flex-col items-center justify-start gap-5 bg-pale-amber p-4 lg:basis-[460px] lg:bg-sky-blue ">
         {children}
       </div>
     </div>

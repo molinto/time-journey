@@ -2,9 +2,10 @@
 
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../utils/reduxHooks";
-import { fetchQuestions, reset } from "@/app/game/questionsSlice";
+import { fetchQuestions, resetQuestions } from "@/app/game/questionsSlice";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
+import { resetAnswers } from "@/app/game/answersSlice";
 
 const useGame = () => {
   const router = useRouter();
@@ -24,7 +25,9 @@ const useGame = () => {
         dispatch(fetchQuestions());
         break;
       case 5:
-        dispatch(reset());
+        dispatch(resetQuestions());
+        dispatch(resetAnswers());
+
         break;
       default:
         router.push(`/game/question/${answersLength + 1}`);

@@ -55,13 +55,13 @@ const RegisterModal = () => {
         />
         <Button label="Register" type="submit" />
       </form>
-      <hr />
+      <hr className="border-dark-sky" />
       <OAuthButtons />
     </div>
   );
 
   const footerContent = (
-    <div className="flex items-center gap-3">
+    <div className="flex items-center justify-between gap-3">
       <p>Already have an account?</p>
       <a
         className="underline transition duration-200 hover:text-gray-400"

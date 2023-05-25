@@ -1,4 +1,4 @@
-import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 import axios, { AxiosResponse } from "axios";
 import {
@@ -12,18 +12,18 @@ interface AnswersSlice {
   value: CompleteAnswer[];
   status: "idle" | "loading" | "succeeded" | "failed";
   error: string | null;
-  score: number;
+  finished: boolean;
 }
 
 const initialState: AnswersSlice = {
   value: [],
   status: "idle",
   error: null,
-  score: 0,
+  finished: false,
 };
 
 export const addAnswer = createAsyncThunk<CompleteAnswer, UserAnswer>(
-  "game/addAnswerById",
+  "answers/addAnswerById",
   async (payload: UserAnswer) => {
     const response: AxiosResponse<GameAnswer> = await axios.get(
       `/api/answers/${payload.id}`
@@ -59,16 +59,12 @@ export const addAnswer = createAsyncThunk<CompleteAnswer, UserAnswer>(
   }
 );
 
-export const gameSlice = createSlice({
-  name: "game",
+export const answersSlice = createSlice({
+  name: "answers",
   initialState,
   reducers: {
-    reset: () => initialState,
-    startGame: (state) => ({ ...state, gameStarted: true }),
-    addScore: (state, action: PayloadAction<number>) => ({
-      ...state,
-      score: state.score + action.payload,
-    }),
+    resetAnswers: () => initialState,
+    finishGame: (state) => ({ ...state, finished: true }),
   },
   extraReducers(builder) {
     builder
@@ -90,9 +86,9 @@ export const gameSlice = createSlice({
   },
 });
 
-export const { reset, startGame, addScore } = gameSlice.actions;
+export const { resetAnswers, finishGame } = answersSlice.actions;
 
-export default gameSlice.reducer;
+export default answersSlice.reducer;
 
 export const selectTotalScore = (state: RootState) => {
   let total = 0;

@@ -14,7 +14,7 @@ const initialState: QuestionsSlice = {
 };
 
 export const fetchQuestions = createAsyncThunk<GameQuestion[]>(
-  "game/fetchQuestions",
+  "questions/fetchQuestions",
   async (_, { rejectWithValue }) => {
     try {
       const response = await axios.get("/api/questions");
@@ -26,10 +26,10 @@ export const fetchQuestions = createAsyncThunk<GameQuestion[]>(
 );
 
 export const questionsSlice = createSlice({
-  name: "game",
+  name: "questions",
   initialState,
   reducers: {
-    reset: () => initialState,
+    resetQuestions: () => initialState,
   },
   extraReducers(builder) {
     builder
@@ -52,6 +52,6 @@ export const questionsSlice = createSlice({
   },
 });
 
-export const { reset } = questionsSlice.actions;
+export const { resetQuestions } = questionsSlice.actions;
 
 export default questionsSlice.reducer;

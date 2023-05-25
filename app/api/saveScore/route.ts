@@ -5,9 +5,9 @@ import { authOptions } from "../auth/[...nextauth]/route";
 
 export async function POST(request: Request) {
   const body = await request.json();
-  const { id, score } = body;
+  const { firstQuestionId, score } = body;
 
-  if (!id || typeof score !== "number") {
+  if (!firstQuestionId || typeof score !== "number") {
     return new NextResponse("No data provided", {
       status: 400,
     });
@@ -28,7 +28,7 @@ export async function POST(request: Request) {
 
   if (!user)
     return new NextResponse("Could not find user", {
-      status: 500,
+      status: 401,
     });
 
   try {
@@ -36,11 +36,14 @@ export async function POST(request: Request) {
       data: {
         value: score,
         userId: user.id,
-        questionId: id,
+        questionId: firstQuestionId,
       },
     });
-    return NextResponse.json(newScore);
+
+    return NextResponse.json("succeeded");
   } catch (error) {
-    console.log(error);
+    return new NextResponse("Something went wrong", {
+      status: 502,
+    });
   }
 }

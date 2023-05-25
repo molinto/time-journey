@@ -5,7 +5,7 @@ import {
   useAppDispatch,
   useAppSelector,
 } from "@/app/components/utils/reduxHooks";
-import { selectTotalScore } from "../answersSlice";
+import { finishGame, selectTotalScore } from "../answersSlice";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import axios from "axios";
@@ -13,33 +13,43 @@ import axios from "axios";
 const Summary = () => {
   const totalScore = useAppSelector(selectTotalScore);
   const router = useRouter();
+  const dispatch = useAppDispatch();
 
   const firstQuestionId = useAppSelector(
-    (state) => state.questions.value[0].id
+    (state) => state.questions?.value[0]?.id
   );
-  const gameFinished = useAppSelector(
-    (state) => state.answers.value.length === 5
-  );
+  const gameFinished = useAppSelector((state) => state.answers?.finished);
 
   useEffect(() => {
-    if (!gameFinished) return;
+    if (gameFinished) return;
 
     const data = {
-      id: firstQuestionId,
+      firstQuestionId: firstQuestionId,
       score: totalScore,
     };
 
-    axios.post("/api/saveScore", data);
-  }, [firstQuestionId, gameFinished, totalScore]);
+    const saveScore = async (data: Score) => {
+      try {
+        await axios.post("/api/saveScore", data);
+        dispatch(finishGame());
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    saveScore(data);
+  }, [gameFinished, firstQuestionId, totalScore, dispatch]);
 
   const newGame = async () => {
     router.push("/game");
   };
 
   return (
-    <div className="">
-      <h2>Total score: {totalScore} / 50000</h2>
-      <Button onClick={newGame} label={"New Game"} type={"button"} />
+    <div className="flex h-full w-full flex-col items-center justify-center gap-16">
+      <h2 className="font-semibold">Total score: {totalScore} of 50000</h2>
+
+      <div className="flex gap-5">
+        <Button onClick={newGame} label={"New Game"} type={"button"} />
+      </div>
     </div>
   );
 };

@@ -7,7 +7,7 @@ const Results = (answer: CompleteAnswer) => {
   const { currentQuestionNumber } = useResults();
 
   return (
-    <div className="flex w-full grow flex-col justify-start gap-3 lg:max-h-[calc(100%-460px)] ">
+    <div className="flex w-full grow flex-col justify-start gap-3 overflow-y-auto lg:max-h-[27rem] ">
       <h1 className=" text-lg font-semibold">{answer.gameYear}</h1>
       <p className="font-sm italic">{answer.license}</p>
       <div className="">{answer.description}</div>

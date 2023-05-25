@@ -20,7 +20,7 @@ interface UserAnswer {
 }
 
 interface Score {
-  id: string;
+  firstQuestionId: string;
   score: number;
 }
 
