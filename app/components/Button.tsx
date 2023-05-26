@@ -22,7 +22,7 @@ const Button = ({
       className={`relative flex w-full items-center justify-center rounded-lg  p-3 transition-all disabled:cursor-not-allowed disabled:opacity-70 md:max-w-lg 
       ${
         outline
-          ? "border border-black bg-transparent hover:bg-pale-amber "
+          ? "border border-silver bg-transparent hover:bg-honeydew "
           : "bg-fern-green text-white hover:brightness-90 "
       }
       `}

@@ -31,7 +31,7 @@ const MapContainer = ({ children }: MapContainerProps) => {
         className="absolute left-2 top-2 z-30 hidden lg:block"
         onClick={toggleMapSize}
       >
-        <div className="rounded-sm bg-pale-amber p-0.5">
+        <div className="rounded-sm bg-honeydew p-0.5">
           {expandMap ? <CollapseIcon /> : <ExpandIcon />}
         </div>
       </button>

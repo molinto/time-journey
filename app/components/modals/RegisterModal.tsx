@@ -55,7 +55,7 @@ const RegisterModal = () => {
         />
         <Button label="Register" type="submit" />
       </form>
-      <hr className="border-dark-sky" />
+      <hr className="border-silver" />
       <OAuthButtons />
     </div>
   );

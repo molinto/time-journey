@@ -13,7 +13,7 @@ const MenuItem = ({ title, onClick, to }: MenuItemProps) => {
       <Link
         onClick={onClick}
         href={to ? to : ""}
-        className="block w-full p-3 hover:bg-slate-300 md:hover:bg-inherit md:hover:underline"
+        className="block w-full p-3 underline-offset-[5px] transition-colors duration-300 md:hover:text-amber-darken md:hover:underline "
       >
         {title}
       </Link>

@@ -41,7 +41,7 @@ const LoginModal = () => {
         />
         <Button label="Log in" type="submit" />
       </form>
-      <hr className="border-dark-sky" />
+      <hr className="border-silver" />
       <OAuthButtons />
     </div>
   );
@@ -51,7 +51,7 @@ const LoginModal = () => {
       <p>Don&apos;t have an account yet?</p>
       <a
         href=""
-        className="underline transition duration-200 hover:text-gray-400"
+        className="underline transition duration-200 hover:text-dark-sky"
         onClick={(e) => {
           e.preventDefault();
           dispatch(open("register"));

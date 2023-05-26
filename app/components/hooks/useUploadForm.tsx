@@ -7,7 +7,7 @@ const useUploadForm = () => {
   const [year, setYear] = useState(1963);
   const [description, setDescription] = useState("");
   const [license, setLicense] = useState("");
-  const [location, setLocation] = useState<Coordinates>();
+  const [marker, setMarker] = useState<Coordinates>();
   const [imageUrl, setImageUrl] = useState("");
   const [imageError, setImageError] = useState(false);
   const [descriptionError, setDescriptionError] = useState(false);
@@ -23,7 +23,7 @@ const useUploadForm = () => {
   const handleMapClick = (e: google.maps.MapMouseEvent) => {
     if (!e.latLng) return;
     setLocationError(false);
-    setLocation({
+    setMarker({
       lat: e.latLng?.lat(),
       lng: e.latLng?.lng(),
     });
@@ -35,7 +35,7 @@ const useUploadForm = () => {
   };
 
   const setErrors = () => {
-    if (!location) setLocationError(true);
+    if (!marker) setLocationError(true);
     if (!imageUrl) setImageError(true);
     if (!description) setDescriptionError(true);
   };
@@ -45,7 +45,7 @@ const useUploadForm = () => {
 
     setLoading(true);
 
-    const isValid = location && imageUrl && description;
+    const isValid = marker && imageUrl && description;
 
     if (!isValid) {
       setErrors();
@@ -55,8 +55,8 @@ const useUploadForm = () => {
 
     const data: Partial<Question> = {
       description: description,
-      lat: location!.lat.toString(),
-      lng: location!.lng.toString(),
+      lat: marker!.lat.toString(),
+      lng: marker!.lng.toString(),
       imageSrc: imageUrl,
       year: year,
       license: license,
@@ -88,7 +88,7 @@ const useUploadForm = () => {
     year,
     description,
     license,
-    location,
+    marker,
     locationError,
     descriptionError,
     imageUrl,

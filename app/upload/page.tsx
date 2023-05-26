@@ -20,7 +20,7 @@ const Upload = () => {
     year,
     description,
     license,
-    location,
+    marker,
     locationError,
     descriptionError,
     imageUrl,
@@ -50,7 +50,7 @@ const Upload = () => {
                   error={imageError}
                 />
                 {imageError && (
-                  <p className="absolute right-1 top-1 flex justify-center text-sm text-red-400">
+                  <p className="absolute right-1 top-1 flex justify-center text-sm text-brick-red">
                     Please choose a photo!
                   </p>
                 )}
@@ -77,17 +77,17 @@ const Upload = () => {
                 <div
                   className={`relative h-[75vh] w-full rounded lg:h-full
             
-            ${locationError ? "border border-red-400 " : "border-transparent"}
+            ${locationError ? "border border-brick-red " : "border-transparent"}
             `}
                 >
                   {locationError && (
-                    <div className="absolute -top-6 right-1 text-sm text-red-400">
+                    <div className="absolute -top-6 right-1 text-sm text-brick-red">
                       Please point the place on the map!
                     </div>
                   )}
                   <GMap
                     handleMapClick={handleMapClick}
-                    currentMarker={location}
+                    currentMarker={marker}
                   />
                 </div>
               </div>

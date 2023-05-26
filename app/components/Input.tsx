@@ -30,10 +30,10 @@ const Input = ({
         type={type}
         disabled={disabled}
         {...register(id, options)}
-        className={`peer w-full rounded-md border bg-white p-4 pl-4 pt-6 font-light placeholder-transparent outline-none disabled:cursor-not-allowed disabled:opacity-70 
+        className={`peer w-full rounded-md  border-transparent bg-white p-4 pl-4 pt-6 font-light placeholder-transparent outline-none disabled:cursor-not-allowed disabled:opacity-70 
         ${
           errors[id]
-            ? "border-red-600 focus:border-red-600"
+            ? "border-brick-red focus:border-brick-red"
             : "border-gray-300 focus:border-black"
         }`}
         placeholder=" "
@@ -49,7 +49,7 @@ const Input = ({
         {id}
       </label>
       {errors[id] && (
-        <div className="py-1 text-sm text-red-600">
+        <div className="py-1 text-sm text-brick-red">
           {errors[id]?.message?.toString()}
         </div>
       )}

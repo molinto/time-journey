@@ -4,8 +4,7 @@ import { signOut, useSession } from "next-auth/react";
 import MenuItem from "./MenuItem";
 import { useAppDispatch } from "../utils/reduxHooks";
 import { open } from "../modals/modalSlice";
-import { useRouter } from "next/navigation";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import useClickOutside from "../hooks/useClickOutside";
 
 interface NavMenuProps {
@@ -15,8 +14,9 @@ interface NavMenuProps {
 
 const NavMenu = ({ closeMenu, isOpen }: NavMenuProps) => {
   const dispatch = useAppDispatch();
-  const { data: session } = useSession();
-  const currentUser = session?.user;
+
+  const { status } = useSession();
+  // const currentUser = session?.user;
 
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -35,7 +35,7 @@ const NavMenu = ({ closeMenu, isOpen }: NavMenuProps) => {
       <ul className="flex list-none flex-col md:flex-row md:items-center lg:gap-5 lg:px-5">
         <MenuItem title="Play" to="/game" />
         <MenuItem title="Rankings" to="/rankings" />
-        {currentUser ? (
+        {status === "authenticated" ? (
           <>
             <MenuItem title="Upload" to="/upload" />
             <MenuItem

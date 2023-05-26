@@ -72,11 +72,12 @@ const ImageUpload = ({ imageUrl, handleUpload, error }: ImageUploadProps) => {
               gap-4
               border-2
               border-dashed
+              bg-white
               p-12
               text-neutral-600
               transition
-              hover:opacity-70
-              ${error ? "border-red-400" : "border-neutral-300"}
+              hover:opacity-60
+              ${error ? "border-brick-red" : "border-neutral-300"}
             `}
           >
             <PhotoIcon />

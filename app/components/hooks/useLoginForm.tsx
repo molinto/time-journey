@@ -22,20 +22,25 @@ const useLoginForm = () => {
       redirect: false,
     })
       .then((res) => {
+        console.log(res);
         if (res?.error) {
           switch (res.error) {
             case "email":
+              console.log("email");
               setError(
                 res.error,
                 { type: "custom", message: "User not found." },
                 { shouldFocus: true }
               );
+              break;
             case "password":
+              console.log("password");
               setError(
                 res.error,
                 { type: "custom", message: "Incorrect password." },
                 { shouldFocus: true }
               );
+              break;
             default:
               setError(
                 "root",

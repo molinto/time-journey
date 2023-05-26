@@ -37,7 +37,7 @@ const Question = () => {
       ) : answer ? (
         <Results {...answer} />
       ) : (
-        <>
+        <div className="flex w-full flex-col gap-6 lg:pt-3">
           <Slider ping={!yearChanged} year={year} onChange={handleYearSlider} />
           <Button
             type="button"
@@ -45,7 +45,7 @@ const Question = () => {
             disabled={!marker}
             onClick={handleSubmitQuestion}
           />
-        </>
+        </div>
       )}
     </div>
   );

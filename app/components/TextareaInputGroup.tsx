@@ -26,7 +26,7 @@ const TextareaInputGroup = ({
       <div className="relative flex flex-col gap-1">
         <textarea
           className={`w-full overflow-hidden  rounded-md border bg-white p-4 font-light  outline-none disabled:cursor-not-allowed disabled:opacity-70
-          ${error ? "border-red-400" : "border-inherit"}
+          ${error ? "border-brick-red" : "border-inherit"}
           `}
           id="description"
           ref={descriptionRef}
@@ -36,7 +36,7 @@ const TextareaInputGroup = ({
           maxLength={200}
         />
         {error && (
-          <p className="absolute right-1 top-1  text-sm text-red-400">
+          <p className="absolute right-1 top-1  text-sm text-brick-red">
             {errorMessage}
           </p>
         )}

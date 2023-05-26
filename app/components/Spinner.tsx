@@ -4,8 +4,8 @@ const Spinner = ({ blue }: { blue?: boolean }) => {
       <div className="relative h-12 w-12 ">
         <div className="flex h-full w-full items-center justify-center rounded-full ">
           <div
-            className={`absolute z-10 h-3/4 w-3/4 rounded-full ${
-              blue ? "bg-pale-amber lg:bg-sky-blue" : "bg-pale-amber"
+            className={`absolute z-10 h-3/4 w-3/4 rounded-full bg-honeydew ${
+              blue ? "lg:bg-sky-blue" : "lg:bg-honeydew"
             }`}
           ></div>
           <div className="absolute h-0.5 w-full bg-black"></div>

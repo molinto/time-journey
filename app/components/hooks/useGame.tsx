@@ -11,14 +11,10 @@ const useGame = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();
   const answersLength = useAppSelector((state) => state.answers.value.length);
-  const { data: session } = useSession();
-
-  const game = useAppSelector((state) => state.answers);
-
-  const { status, error } = game;
+  const { status } = useSession();
 
   useEffect(() => {
-    if (!session) return;
+    if (status === "unauthenticated") return;
 
     switch (answersLength) {
       case 0:
@@ -32,9 +28,9 @@ const useGame = () => {
       default:
         router.push(`/game/question/${answersLength + 1}`);
     }
-  }, [answersLength, dispatch, router, session]);
+  }, [answersLength, dispatch, router, status]);
 
-  return { status, error, session };
+  return { status };
 };
 
 export default useGame;

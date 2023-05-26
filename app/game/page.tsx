@@ -8,10 +8,17 @@ import { useAppDispatch } from "../components/utils/reduxHooks";
 import { open } from "../components/modals/modalSlice";
 
 const Game = () => {
-  const { session, error, status } = useGame();
+  const { status } = useGame();
   const dispatch = useAppDispatch();
 
-  if (!session) {
+  if (status === "loading") {
+    return (
+      <div className="flex h-full w-full items-center justify-center">
+        <Spinner />
+      </div>
+    );
+  }
+  if (status === "unauthenticated") {
     return (
       <div className="flex h-full flex-col items-center justify-center">
         <Button
