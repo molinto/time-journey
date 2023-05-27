@@ -1,4 +1,4 @@
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useAppDispatch, useAppSelector } from "../utils/reduxHooks";
 import { finishGame, selectTotalScore } from "@/app/game/answersSlice";
 import { useEffect } from "react";
@@ -33,11 +33,7 @@ const useSummary = () => {
     saveScore(data);
   }, [gameFinished, firstQuestionId, totalScore, dispatch]);
 
-  const navigateToNewGame = async () => {
-    router.push("/game");
-  };
-
-  return { navigateToNewGame, totalScore };
+  return { totalScore };
 };
 
 export default useSummary;

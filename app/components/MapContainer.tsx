@@ -1,7 +1,7 @@
 import ExpandIcon from "./icons/ExpandIcon";
 import CollapseIcon from "./icons/CollapseIcon";
 import useClickOutside from "./hooks/useClickOutside";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface MapContainerProps {
   children: React.ReactNode;

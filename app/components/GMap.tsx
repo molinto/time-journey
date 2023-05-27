@@ -6,7 +6,7 @@ import {
   PolylineF,
   useLoadScript,
 } from "@react-google-maps/api";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef } from "react";
 
 import React from "react";
 import Spinner from "./Spinner";
@@ -30,6 +30,7 @@ const GMap = ({ finalMarkers, handleMapClick, currentMarker }: MapProps) => {
   });
 
   const mapRef = useRef<MapMap | null>(null);
+  const mapInnerContainer = useRef<HTMLDivElement>(null);
 
   const onLoad = useCallback((map: any) => {
     mapRef.current = map;
@@ -71,13 +72,21 @@ const GMap = ({ finalMarkers, handleMapClick, currentMarker }: MapProps) => {
     mapRef.current?.fitBounds(bounds);
   }, [finalMarkers]);
 
+  useEffect(() => {
+    if (!finalMarkers) return;
+    mapInnerContainer.current?.scrollIntoView({
+      block: "center",
+      behavior: "smooth",
+    });
+  }, [finalMarkers, mapInnerContainer]);
+
   const lineSymbol = {
     path: "M 0,0 0,1",
     scale: 2,
   };
 
   return (
-    <>
+    <div className="h-full w-full" ref={mapInnerContainer}>
       {!isLoaded ? (
         <div className="flex h-full w-full items-center justify-center rounded bg-green-100">
           <Spinner />
@@ -132,7 +141,7 @@ const GMap = ({ finalMarkers, handleMapClick, currentMarker }: MapProps) => {
           ) : null}
         </GoogleMap>
       )}
-    </>
+    </div>
   );
 };
 
