@@ -30,14 +30,17 @@ const QuestionLayout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <div className="flex w-full flex-col lg:h-full lg:flex-row">
-      <Image
-        src={nextImageSrc}
-        alt="Photo"
-        fill
-        priority
-        sizes="(max-width: 768px) 100vw, 75vw"
-        className="hidden object-contain px-4 py-2 lg:p-4"
-      />
+      {/* manual preload of next image */}
+      {nextImageSrc && (
+        <Image
+          src={nextImageSrc}
+          alt="Photo"
+          fill
+          priority
+          sizes="(max-width: 768px) 100vw, 75vw"
+          className="hidden object-contain px-4 py-2 lg:p-4"
+        />
+      )}
       <div className="relative h-[60vh] w-full lg:h-full">
         {loading ? (
           <div className="flex h-full w-full items-center justify-center py-4">

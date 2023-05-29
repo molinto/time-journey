@@ -7,6 +7,7 @@ import {
   useLoadScript,
 } from "@react-google-maps/api";
 import { useCallback, useEffect, useMemo, useRef } from "react";
+import letterT from "letter_t.png";
 
 import React from "react";
 import Spinner from "./Spinner";
@@ -104,8 +105,9 @@ const GMap = ({ finalMarkers, handleMapClick, currentMarker }: MapProps) => {
             <MarkerF
               position={currentMarker}
               icon={{
-                url: "http://maps.google.com/mapfiles/ms/icons/blue.png",
+                url: "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png",
               }}
+              title="Your guess"
             />
           ) : null}
 
@@ -114,14 +116,16 @@ const GMap = ({ finalMarkers, handleMapClick, currentMarker }: MapProps) => {
               <MarkerF
                 position={finalMarkers.userMarker}
                 icon={{
-                  url: "http://maps.google.com/mapfiles/ms/icons/blue.png",
+                  url: "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png",
                 }}
+                title="Your guess"
               />
               <MarkerF
                 position={finalMarkers.gameMarker}
                 icon={{
-                  url: "http://maps.google.com/mapfiles/ms/icons/red.png",
+                  url: "http://maps.google.com/mapfiles/ms/micons/red-dot.png",
                 }}
+                title="Right location"
               />
               <PolylineF
                 path={[finalMarkers.gameMarker, finalMarkers.userMarker]}

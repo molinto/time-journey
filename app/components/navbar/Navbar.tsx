@@ -5,7 +5,6 @@ import Logo from "./Logo";
 import NavMenu from "./NavMenu";
 import User from "./User";
 import useNavbar from "../hooks/useNavbar";
-import axios from "axios";
 
 const Navbar = () => {
   const { toggleIsOpen, isOpen, closeMenu } = useNavbar();

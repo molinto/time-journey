@@ -33,29 +33,11 @@ export async function GET(request: Request) {
       year: parseInt(q.Year),
       description: q.Description,
       license: q.License,
-      // users: {
-      //   connect: {
-      //     id: user.id,
-      //   },
-      // },
     };
   });
   const kek = await prisma.question.createMany({
     data: questions,
   });
-  //   const question = await prisma.question.create({
-  //     data: {
-  //       imageSrc: imageSrc,
-  //       lat: lat,
-  //       lng: lng,
-  //       year: year,
-  //       description: description,
-  //       author: author,
-  //       users: {
-  //         connect: { id: user.id },
-  //       },
-  //     },
-  //   });
 
   return new NextResponse("kek");
 }
