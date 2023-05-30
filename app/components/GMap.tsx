@@ -7,8 +7,6 @@ import {
   useLoadScript,
 } from "@react-google-maps/api";
 import { useCallback, useEffect, useMemo, useRef } from "react";
-import letterT from "letter_t.png";
-
 import React from "react";
 import Spinner from "./Spinner";
 

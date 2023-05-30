@@ -8,7 +8,6 @@ import { useAppDispatch } from "../components/utils/reduxHooks";
 import { open } from "../components/modals/modalSlice";
 import Image from "next/image";
 import Slider from "../components/Slider";
-import { ChangeEvent } from "react";
 
 const Game = () => {
   const { status } = useGame();

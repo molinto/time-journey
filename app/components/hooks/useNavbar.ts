@@ -1,10 +1,13 @@
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import useClickOutside from "./useClickOutside";
 
 const useNavbar = () => {
+  const menuRef = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState(false);
-  const toggleIsOpen = () => {
-    setIsOpen(!isOpen);
+
+  const openMenu = () => {
+    setIsOpen(true);
   };
 
   const path = usePathname();
@@ -13,10 +16,12 @@ const useNavbar = () => {
     setIsOpen(false);
   };
 
+  useClickOutside(menuRef, closeMenu);
+
   useEffect(() => {
     closeMenu();
   }, [path]);
-  return { toggleIsOpen, isOpen, closeMenu };
+  return { openMenu, isOpen, closeMenu, menuRef };
 };
 
 export default useNavbar;

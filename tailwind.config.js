@@ -15,7 +15,10 @@ module.exports = {
           DEFAULT: "#C5E7E8",
           light: "#e7f5f5",
         },
-        "dark-sky": "#454A48",
+        "dark-sky": {
+          DEFAULT: "#454A48",
+          light: "#575c5a",
+        },
         silver: "#B5BAB8",
         honeydew: {
           DEFAULT: "#F1FAEE",

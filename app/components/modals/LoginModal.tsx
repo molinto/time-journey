@@ -51,7 +51,7 @@ const LoginModal = () => {
       <p>Don&apos;t have an account yet?</p>
       <a
         href=""
-        className="underline transition duration-200 hover:text-dark-sky"
+        className="underline transition duration-200 hover:text-dark-sky-light"
         onClick={(e) => {
           e.preventDefault();
           dispatch(open("register"));

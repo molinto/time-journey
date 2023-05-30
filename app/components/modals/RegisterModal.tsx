@@ -64,7 +64,7 @@ const RegisterModal = () => {
     <div className="flex items-center justify-between gap-3">
       <p>Already have an account?</p>
       <a
-        className="underline transition duration-200 hover:text-gray-400"
+        className="underline transition duration-200 hover:text-dark-sky-light"
         href=""
         onClick={(e) => {
           e.preventDefault();

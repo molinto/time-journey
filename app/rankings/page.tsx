@@ -36,12 +36,14 @@ const Rankings = () => {
     <div className="flex h-full w-full flex-col items-center justify-start p-4 md:p-10">
       <table className="w-full table-auto border-collapse overflow-hidden rounded text-left text-sm md:w-[460px]">
         <thead className=" bg-sky-blue text-xs uppercase ">
-          <th scope="col" className="px-6 py-3">
-            Name
-          </th>
-          <th scope="col" className="w-24 px-6 py-3 text-right">
-            Score
-          </th>
+          <tr>
+            <th scope="col" className="px-6 py-3">
+              Name
+            </th>
+            <th scope="col" className="w-24 px-6 py-3 text-right">
+              Score
+            </th>
+          </tr>
         </thead>
         <tbody>
           {scores.map((score) => {

@@ -10,6 +10,8 @@ html,
 
 :root {
   --brick-red: #db5049;
+  --primary: #e9e9e9;
+  --secondary: #454a48;
 }
 
 input[type="range"]::-webkit-slider-thumb {
@@ -39,4 +41,22 @@ input[type="range"]::-ms-thumb {
   width: 1em;
   border-radius: 8px;
   background-color: var(--brick-red);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--secondary) var(--primary);
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--primary);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--secondary);
 }
