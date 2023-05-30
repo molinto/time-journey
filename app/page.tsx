@@ -13,7 +13,7 @@ export default function Home() {
       <h1 className="py-5 text-xl ">Welcome to TimeJourney.</h1>
       <p>
         Get ready to test your knowledge of historical events and cultural
-        trends. You'll be transported through time and space, exploring
+        trends. You&apos;ll be transported through time and space, exploring
         different eras and decades. From iconic moments in history to fashion
         fads, technological advancements to popular culture phenomena, this game
         will challenge your ability to connect images with their corresponding

@@ -35,7 +35,7 @@ const Game = () => {
   return (
     <div className="flex h-full w-full flex-col items-center justify-center gap-8 px-3">
       <p className="px-8 text-center leading-9 md:max-w-lg xl:max-w-2xl">
-        Each round will feature a new photograph. You'll have to guess the
+        Each round will feature a new photograph. You&apos;ll have to guess the
         correct year and location using slider and map.
       </p>
       <div className="flex w-full flex-col items-center justify-center gap-5 lg:flex-row">
