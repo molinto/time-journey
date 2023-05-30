@@ -44,3 +44,9 @@ interface CompleteAnswer {
   description: string;
   license: string;
 }
+
+interface Ranking {
+  name: string;
+  value: number;
+  id: string;
+}

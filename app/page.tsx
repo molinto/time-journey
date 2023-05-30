@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -18,6 +19,12 @@ export default function Home() {
         will challenge your ability to connect images with their corresponding
         time periods and locations.
       </p>
+      <Link
+        href="/game"
+        className="ml-auto underline transition-colors hover:text-blue-400 "
+      >
+        Ready?
+      </Link>
     </div>
   );
 }

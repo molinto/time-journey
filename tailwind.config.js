@@ -11,7 +11,10 @@ module.exports = {
     extend: {
       colors: {
         "brick-red": "#DB5049",
-        "sky-blue": "#C5E7E8",
+        "sky-blue": {
+          DEFAULT: "#C5E7E8",
+          light: "#e7f5f5",
+        },
         "dark-sky": "#454A48",
         silver: "#B5BAB8",
         honeydew: {
