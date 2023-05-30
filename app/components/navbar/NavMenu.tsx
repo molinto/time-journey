@@ -32,7 +32,7 @@ const NavMenu = ({ isOpen }: NavMenuProps) => {
             <MenuItem
               title="Log Out"
               onClick={() => {
-                signOut({ callbackUrl: "http://localhost:3000/" });
+                signOut({ callbackUrl: "https://time-journey.vercel.app/" });
               }}
             />
           </>
