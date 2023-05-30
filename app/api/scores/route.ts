@@ -1,29 +1,7 @@
 import { NextResponse } from "next/server";
 import prisma from "../../components/utils/prismadb";
-import { getServerSession } from "next-auth";
-import { authOptions } from "../auth/[...nextauth]/route";
 
 export async function GET(request: Request) {
-  //   const session = await getServerSession(authOptions);
-  //   const email = session?.user?.email;
-  //   if (!email) {
-  //     return new NextResponse("Unauthorized access detected", {
-  //       status: 401,
-  //     });
-  //   }
-  //   const user = await prisma.user.findUnique({
-  //     where: {
-  //       email: email,
-  //     },
-  //   });
-
-  //   if (!user) {
-  //     return new NextResponse("User not found", {
-  //       status: 500,
-  //     });
-  //   }
-
-  console.log("kek");
   const scores = await prisma.score.findMany({
     take: 10,
     orderBy: [

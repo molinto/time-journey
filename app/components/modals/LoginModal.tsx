@@ -1,13 +1,13 @@
 "use client";
 
 import Button from "../Button";
-import Input from "../Input";
+import Input from "./ModalInput";
 import { handleKeyDown } from "../utils/formUtils";
 import Modal from "./Modal";
 import OAuthButtons from "./OAuthButtons";
 import { open } from "./modalSlice";
 import { useAppDispatch, useAppSelector } from "../utils/reduxHooks";
-import useLoginForm from "../hooks/useLoginForm";
+import useLoginForm from "./useLoginForm";
 
 const LoginModal = () => {
   const isOpen = useAppSelector((state) => state.modal.value === "login");

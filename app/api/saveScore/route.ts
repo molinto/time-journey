@@ -32,7 +32,7 @@ export async function POST(request: Request) {
     });
 
   try {
-    const newScore = await prisma.score.create({
+    await prisma.score.create({
       data: {
         value: score,
         userId: user.id,
@@ -40,7 +40,7 @@ export async function POST(request: Request) {
       },
     });
 
-    return NextResponse.json("succeeded");
+    return NextResponse.json("success");
   } catch (error) {
     return new NextResponse("Something went wrong", {
       status: 502,

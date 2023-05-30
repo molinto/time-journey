@@ -2,7 +2,6 @@ export const calculateDistance = (
   marker1: Coordinates,
   marker2: Coordinates
 ) => {
-  // if (!marker1 || !marker2) return null;
   const p = 0.017453292519943295;
   const c = Math.cos;
   const a =
@@ -30,7 +29,7 @@ export const formatDistance = (distance: number | null) => {
 
 export const calculateYearsScore = (difference: number) => {
   if (difference === 0) return 5000;
-  const cut = 50 * Math.pow(difference, 2);
+  const cut = 40 * Math.pow(difference, 2);
   if (cut > 5000) return 0;
   return 5000 - cut;
 };
@@ -41,7 +40,7 @@ export const calculateYearsDifference = (year1: number, year2: number) => {
 
 export const calculateDistanceScore = (distance: number) => {
   if (distance < 1) return 5000;
-  const cut = distance * 10;
+  const cut = distance * 5;
   if (cut > 5000) return 0;
   const score = 5000 - distance * 10;
   return Math.round(score);

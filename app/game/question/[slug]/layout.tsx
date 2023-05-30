@@ -4,7 +4,6 @@ import Spinner from "@/app/components/Spinner";
 import { useAppSelector } from "@/app/components/utils/reduxHooks";
 import Image from "next/image";
 import { useParams } from "next/navigation";
-import { useEffect } from "react";
 
 const QuestionLayout = ({ children }: { children: React.ReactNode }) => {
   const params = useParams();
@@ -22,11 +21,6 @@ const QuestionLayout = ({ children }: { children: React.ReactNode }) => {
   const loading = useAppSelector(
     (state) => state.questions.status === "loading"
   );
-
-  // useEffect(() => {
-  //   // const image = <Image src={nextImageSrc} alt={"Photo"} />;
-  //   // if (image) return;
-  // }, [nextImageSrc]);
 
   return (
     <div className="flex w-full flex-col lg:h-full lg:flex-row">

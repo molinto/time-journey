@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Button from "../components/Button";
-import useGame from "../components/hooks/useGame";
+import useGame from "./useGame";
 import Spinner from "../components/Spinner";
 import { useAppDispatch } from "../components/utils/reduxHooks";
 import { open } from "../components/modals/modalSlice";

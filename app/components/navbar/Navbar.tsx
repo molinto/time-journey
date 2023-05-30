@@ -4,7 +4,7 @@ import MenuIcon from "../icons/MenuIcon";
 import Logo from "./Logo";
 import NavMenu from "./NavMenu";
 import User from "./User";
-import useNavbar from "../hooks/useNavbar";
+import useNavbar from "./useNavbar";
 import CloseIcon from "../icons/CloseIcon";
 
 const Navbar = () => {

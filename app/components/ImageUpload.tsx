@@ -2,9 +2,7 @@
 
 import { CldUploadWidget, CldUploadWidgetPropsOptions } from "next-cloudinary";
 import Image from "next/image";
-import { useState } from "react";
 import PhotoIcon from "./icons/PhotoIcon";
-import { error } from "console";
 
 const UPLOAD_PRESET = "zgrbsoin";
 

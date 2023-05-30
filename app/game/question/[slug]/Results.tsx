@@ -1,5 +1,5 @@
 import Button from "@/app/components/Button";
-import useResults from "@/app/components/hooks/useResults";
+import useResults from "@/app/game/question/[slug]/useResults";
 import { formatDistance } from "@/app/components/utils/gameUtils";
 import Link from "next/link";
 
@@ -10,15 +10,7 @@ const Results = (answer: CompleteAnswer) => {
     <div className="flex w-full grow flex-col justify-start gap-3 overflow-y-auto pr-1 lg:max-h-[25rem]">
       <h1 className=" text-lg font-semibold">{answer.gameYear}</h1>
       <p className="font-sm italic">{answer.license}</p>
-      <div className="">
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Omnis hic
-        totam error fugit ducimus nihil harum maxime aliquid ipsa modi corporis
-        explicabo aliquam doloremque aut, corrupti, officiis laudantium!
-        Officia, quis. Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-        Repellat dignissimos in consequatur, quam culpa ab nisi laboriosam
-        blanditiis nam reiciendis nemo harum magni iure ipsa illum laborum dicta
-        non corrupti.
-      </div>
+      <div className="">{answer.description}</div>
       <div className="mt-auto flex flex-col gap-3">
         <div className="flex w-full items-center justify-between gap-3">
           <span>You were {answer.yearDifference} years off</span>

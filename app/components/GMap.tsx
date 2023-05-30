@@ -36,10 +36,7 @@ const GMap = ({ finalMarkers, handleMapClick, currentMarker }: MapProps) => {
     return;
   }, []);
 
-  const center = useMemo<LatLngLiteral>(
-    () => ({ lat: 18.52043, lng: 73.856743 }),
-    []
-  );
+  const center = useMemo<LatLngLiteral>(() => ({ lat: 49, lng: 9 }), []);
 
   const options = useMemo<MapOptions>(
     () => ({

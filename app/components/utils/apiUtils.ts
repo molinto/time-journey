@@ -1,7 +1,3 @@
-// export function pickRandomItems(arr: any[], quantity: number) {
-//   const shuffled = [...arr].sort(() => 0.5 - Math.random());
-//   return shuffled.slice(0, quantity);
-// }
 import prisma from "./prismadb";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { getServerSession } from "next-auth";

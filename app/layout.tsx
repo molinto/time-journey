@@ -1,4 +1,4 @@
-import { Roboto_Mono, Satisfy, Poppins } from "next/font/google";
+import { Satisfy, Poppins } from "next/font/google";
 import LoginModal from "./components/modals/LoginModal";
 import RegisterModal from "./components/modals/RegisterModal";
 import Navbar from "./components/navbar/Navbar";

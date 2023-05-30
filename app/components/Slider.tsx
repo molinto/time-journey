@@ -15,7 +15,6 @@ const Slider = ({
 }: SliderProps) => {
   return (
     <div className="flex w-full flex-col items-center">
-      {/* <label className="pb-2">Use slider to pick a year</label> */}
       <div className="relative flex w-full items-center justify-center">
         <div
           className={`absolute z-20 cursor-pointer select-none font-semibold text-white ${

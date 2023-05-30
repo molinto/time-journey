@@ -27,7 +27,7 @@ export async function POST(request: Request) {
     });
   }
 
-  const question = await prisma.question.create({
+  await prisma.question.create({
     data: {
       imageSrc: imageSrc,
       lat: lat,

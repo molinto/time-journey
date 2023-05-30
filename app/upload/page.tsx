@@ -5,7 +5,7 @@ import ImageUpload from "../components/ImageUpload";
 import Slider from "../components/Slider";
 import GMap from "../components/GMap";
 import Button from "../components/Button";
-import useUploadForm from "../components/hooks/useUploadForm";
+import useUploadForm from "./useUploadForm";
 import TextareaInputGroup from "../components/TextareaInputGroup";
 import TextInputGroup from "../components/TextInputGroup";
 
@@ -82,7 +82,7 @@ const Upload = () => {
                 >
                   {locationError && (
                     <div className="absolute -top-6 right-1 text-sm text-brick-red">
-                      Please point the place on the map!
+                      Please point the location on the map!
                     </div>
                   )}
                   <GMap

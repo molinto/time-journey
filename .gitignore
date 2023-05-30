@@ -36,3 +36,5 @@ originalQuestions.ts
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+/uploadMany

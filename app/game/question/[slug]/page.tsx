@@ -1,6 +1,6 @@
 "use client";
 
-import useQuestion from "@/app/components/hooks/useQuestion";
+import useQuestion from "@/app/game/question/[slug]/useQuestion";
 import Slider from "@/app/components/Slider";
 import Button from "@/app/components/Button";
 import GMap from "@/app/components/GMap";

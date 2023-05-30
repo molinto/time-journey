@@ -3,8 +3,8 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import useClickOutside from "../hooks/useClickOutside";
 import CloseIcon from "../icons/CloseIcon";
-import { useAppDispatch, useAppSelector } from "../utils/reduxHooks";
-import { close, open } from "./modalSlice";
+import { useAppDispatch } from "../utils/reduxHooks";
+import { close } from "./modalSlice";
 
 interface ModalProps {
   title: string;
