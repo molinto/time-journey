@@ -8,7 +8,6 @@ export async function GET(request: Request) {
         value: "desc",
       },
     ],
-
     take: 10,
     select: {
       value: true,

@@ -37,4 +37,4 @@ originalQuestions.ts
 *.tsbuildinfo
 next-env.d.ts
 
-/uploadMany
+testApi.http
