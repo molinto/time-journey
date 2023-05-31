@@ -29,7 +29,7 @@ export const formatDistance = (distance: number | null) => {
 
 export const calculateYearsScore = (difference: number) => {
   if (difference === 0) return 5000;
-  const cut = 40 * Math.pow(difference, 2);
+  const cut = (30 + 30 * difference) * difference;
   if (cut > 5000) return 0;
   return 5000 - cut;
 };
