@@ -8,7 +8,7 @@ import Link from "next/link";
 const Summary = () => {
   const { totalScore } = useSummary();
   return (
-    <div className="flex h-full w-full flex-col items-center justify-between gap-4 overflow-y-auto p-4 md:justify-start md:gap-10 md:pt-10">
+    <div className="flex h-full w-full flex-col items-center justify-between gap-4 overflow-y-auto p-4 md:justify-start md:gap-10">
       <div className="relative h-[calc(100vh-15rem)] w-full">
         <Image
           src={"/summaryFull.png"}
@@ -16,6 +16,7 @@ const Summary = () => {
           fill
           sizes="100vw"
           className="rounded object-cover"
+          priority
         />
       </div>
       <div className="flex w-full items-center justify-center gap-10 md:max-w-xs  ">
