@@ -40,8 +40,8 @@ export const calculateYearsDifference = (year1: number, year2: number) => {
 
 export const calculateDistanceScore = (distance: number) => {
   if (distance < 1) return 5000;
-  const cut = distance * 5;
+  const cut = distance * 6;
   if (cut > 5000) return 0;
-  const score = 5000 - distance * 10;
+  const score = 5000 - cut;
   return Math.round(score);
 };
