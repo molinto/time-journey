@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import prisma from "../../components/utils/prismadb";
 import { getServerSession } from "next-auth";
-import { authOptions } from "../auth/[...nextauth]/route(to-remove)";
+import { authOptions } from "../auth/[...nextauth]/route";
 
 export async function POST(request: Request) {
   const body = await request.json();
