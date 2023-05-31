@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import prisma from "../../components/utils/prismadb";
 
+export const revalidate = 0;
+
 export async function GET(request: Request) {
   const scores = await prisma.score.findMany({
     orderBy: [
