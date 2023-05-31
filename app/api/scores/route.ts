@@ -3,13 +3,13 @@ import prisma from "../../components/utils/prismadb";
 
 export async function GET(request: Request) {
   const scores = await prisma.score.findMany({
-    take: 10,
     orderBy: [
       {
         value: "desc",
       },
     ],
 
+    take: 10,
     select: {
       value: true,
       id: true,
