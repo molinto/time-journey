@@ -49,6 +49,7 @@ const Game = () => {
           alt="Map showcase"
           className="rounded"
           quality={100}
+          priority
         />
       </div>
       <p> The more accurate your guess, the higher your score. Good Luck!</p>
