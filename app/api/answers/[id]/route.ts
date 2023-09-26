@@ -1,6 +1,7 @@
 import getCurrentUser from "@/app/components/utils/apiUtils";
 import { NextResponse } from "next/server";
 import prisma from "@/app/components/utils/prismadb";
+import { GameAnswer } from "@/types";
 
 interface Params {
   params: {

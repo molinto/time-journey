@@ -7,6 +7,7 @@ import {
   calculateYearsDifference,
   calculateYearsScore,
 } from "../components/utils/gameUtils";
+import { CompleteAnswer, GameAnswer, UserAnswer } from "@/types";
 
 interface AnswersSlice {
   value: CompleteAnswer[];

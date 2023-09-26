@@ -3,6 +3,7 @@ import prisma from "../../components/utils/prismadb";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]/route";
 
+// eslint-disable-next-line no-unused-vars
 export async function GET(request: Request) {
   const session = await getServerSession(authOptions);
   const email = session?.user?.email;

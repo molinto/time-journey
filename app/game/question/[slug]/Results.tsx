@@ -2,6 +2,7 @@ import Button from "@/app/components/Button";
 import useResults from "@/app/game/question/[slug]/useResults";
 import { formatDistance } from "@/app/components/utils/gameUtils";
 import Link from "next/link";
+import { CompleteAnswer } from "@/types";
 
 const Results = (answer: CompleteAnswer) => {
   const { currentQuestionNumber } = useResults();

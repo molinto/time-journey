@@ -6,6 +6,7 @@ import "./globals.css";
 import { NextAuthProvider } from "./providers/SessionProvider";
 import ToasterProvider from "./providers/ToasterProvider";
 import { ReduxProvider } from "./providers/ReduxProvider";
+import React from "react";
 
 const poppins = Poppins({ weight: "400", subsets: ["latin"] });
 const satisfy = Satisfy({

@@ -1,3 +1,6 @@
+/* eslint-disable no-unused-vars */
+import React from "react";
+
 interface ButtonProps {
   label: string;
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
@@ -19,7 +22,7 @@ const Button = ({
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className={`relative flex w-full items-center justify-center rounded-lg  p-3 transition-all disabled:cursor-not-allowed disabled:opacity-70 lg:max-w-lg 
+      className={`relative flex w-full items-center justify-center rounded-lg  p-3 transition-all disabled:cursor-not-allowed disabled:opacity-70 lg:max-w-lg
       ${
         outline
           ? "border border-silver bg-transparent hover:bg-honeydew "

@@ -1,3 +1,4 @@
+import { AuthForm } from "@/types";
 import { FieldErrors, UseFormRegister } from "react-hook-form";
 
 interface InputProps {
@@ -30,7 +31,7 @@ const Input = ({
         type={type}
         disabled={disabled}
         {...register(id, options)}
-        className={`peer w-full rounded-md  border-transparent bg-white p-4 pl-4 pt-6 font-light placeholder-transparent outline-none disabled:cursor-not-allowed disabled:opacity-70 
+        className={`peer w-full rounded-md  border-transparent bg-white p-4 pl-4 pt-6 font-light placeholder-transparent outline-none disabled:cursor-not-allowed disabled:opacity-70
         ${
           errors[id]
             ? "border-brick-red focus:border-brick-red"
@@ -41,7 +42,7 @@ const Input = ({
       <label
         className={`
         pointer-events-none absolute left-4 top-5 z-10 origin-[0] -translate-y-4 scale-75 transform  capitalize
-        duration-150 peer-placeholder-shown:translate-y-0 
+        duration-150 peer-placeholder-shown:translate-y-0
         peer-placeholder-shown:scale-100 peer-focus:-translate-y-4 peer-focus:text-black
         ${errors[id] ? "text-rose" : "text-gray-400"}
         `}

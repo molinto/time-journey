@@ -4,6 +4,7 @@ import Spinner from "@/app/components/Spinner";
 import { useAppSelector } from "@/app/components/utils/reduxHooks";
 import Image from "next/image";
 import { useParams } from "next/navigation";
+import React from "react";
 
 const QuestionLayout = ({ children }: { children: React.ReactNode }) => {
   const params = useParams();

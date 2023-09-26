@@ -33,7 +33,7 @@ export const questionsSlice = createSlice({
   },
   extraReducers(builder) {
     builder
-      .addCase(fetchQuestions.pending, (state, action) => {
+      .addCase(fetchQuestions.pending, (state) => {
         state.status = "loading";
       })
       .addCase(fetchQuestions.fulfilled, (state, action) => {

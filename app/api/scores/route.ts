@@ -1,8 +1,10 @@
 import { NextResponse } from "next/server";
 import prisma from "../../components/utils/prismadb";
+import { Ranking } from "@/types";
 
 export const revalidate = 0;
 
+// eslint-disable-next-line no-unused-vars
 export async function GET(request: Request) {
   const scores = await prisma.score.findMany({
     orderBy: [

@@ -5,6 +5,7 @@ import {
 import { finishGame, selectTotalScore } from "@/app/game/answersSlice";
 import { useEffect } from "react";
 import axios from "axios";
+import { Score } from "@/types";
 
 const useSummary = () => {
   const totalScore = useAppSelector(selectTotalScore);

@@ -1,37 +1,37 @@
-interface Coordinates {
+export interface Coordinates {
   lat: number;
   lng: number;
 }
 
-interface GameQuestion {
+export interface GameQuestion {
   id: string;
   imageSrc: string;
 }
 
-interface GameAnswer extends UserAnswer {
+export interface GameAnswer extends UserAnswer {
   description: string;
   license: string;
 }
 
-interface UserAnswer {
+export interface UserAnswer {
   id: string;
   year: number;
   coordinates: Coordinates;
 }
 
-interface Score {
+export interface Score {
   firstQuestionId: string;
   score: number;
 }
 
-interface AuthForm {
+export interface AuthForm {
   name?: string;
   email: string;
   password: string;
   customError: string;
 }
 
-interface CompleteAnswer {
+export interface CompleteAnswer {
   id: string;
   userYear: number;
   gameYear: number;
@@ -45,7 +45,7 @@ interface CompleteAnswer {
   license: string;
 }
 
-interface Ranking {
+export interface Ranking {
   name: string;
   value: number;
   id: string;

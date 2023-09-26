@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { RefObject } from "react";
 
 const useClickOutside = <T extends HTMLElement = HTMLElement>(

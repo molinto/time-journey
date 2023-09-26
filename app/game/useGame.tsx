@@ -11,6 +11,7 @@ const useGame = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();
   const answersLength = useAppSelector((state) => state.answers.value.length);
+  console.log({ answersLength });
   const { status } = useSession();
 
   useEffect(() => {

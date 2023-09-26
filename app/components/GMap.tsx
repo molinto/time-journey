@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 "use client";
 
 import {
@@ -9,6 +10,7 @@ import {
 import { useCallback, useEffect, useMemo, useRef } from "react";
 import React from "react";
 import Spinner from "./Spinner";
+import { Coordinates } from "@/types";
 
 interface MapProps {
   handleMapClick?: (e: google.maps.MapMouseEvent) => void;

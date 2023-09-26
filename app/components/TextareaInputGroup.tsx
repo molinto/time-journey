@@ -1,4 +1,5 @@
-import { useRef } from "react";
+/* eslint-disable no-unused-vars */
+import React, { useRef } from "react";
 import useResizeTextarea from "./hooks/useResizeTextarea";
 
 interface TextareaInputGroupProps {

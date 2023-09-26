@@ -4,6 +4,7 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { useAppDispatch } from "../utils/reduxHooks";
 import { close } from "./modalSlice";
+import { AuthForm } from "@/types";
 
 const useLoginForm = () => {
   const [loading, setLoading] = useState(false);

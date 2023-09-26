@@ -5,6 +5,7 @@ import {
 } from "../../../components/utils/reduxHooks";
 import { useParams } from "next/navigation";
 import { addAnswer } from "@/app/game/answersSlice";
+import { Coordinates } from "@/types";
 
 const useQuestion = () => {
   const params = useParams();

@@ -9,6 +9,7 @@ import Modal from "./Modal";
 import OAuthButtons from "./OAuthButtons";
 import { useAppDispatch, useAppSelector } from "../utils/reduxHooks";
 import { open } from "./modalSlice";
+import { AuthForm } from "@/types";
 
 const RegisterModal = () => {
   const {

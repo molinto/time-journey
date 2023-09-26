@@ -1,5 +1,6 @@
 "use client";
 
+import { Ranking } from "@/types";
 import axios from "axios";
 import { useEffect, useState } from "react";
 

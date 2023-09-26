@@ -1,3 +1,5 @@
+import { Coordinates } from "@/types";
+
 export const calculateDistance = (
   marker1: Coordinates,
   marker2: Coordinates

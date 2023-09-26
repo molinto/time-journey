@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import useClickOutside from "../hooks/useClickOutside";
 import CloseIcon from "../icons/CloseIcon";
 import { useAppDispatch } from "../utils/reduxHooks";

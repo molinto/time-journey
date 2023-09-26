@@ -7,6 +7,7 @@ import Link from "next/link";
 
 const Summary = () => {
   const { totalScore } = useSummary();
+
   return (
     <div className="flex h-full w-full flex-col items-center justify-between gap-4 overflow-y-auto p-4 md:justify-start md:gap-10">
       <div className="relative h-[calc(100vh-15rem)] w-full">

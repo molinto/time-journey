@@ -1,7 +1,8 @@
 import { useRouter } from "next/navigation";
-import { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import { Question } from "@prisma/client";
 import axios from "axios";
+import { Coordinates } from "@/types";
 
 const useUploadForm = () => {
   const [year, setYear] = useState(1963);
