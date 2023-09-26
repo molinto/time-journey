@@ -1,3 +1,4 @@
+import { GameQuestion } from "@/types";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
