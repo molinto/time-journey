@@ -2,7 +2,7 @@
 
 import { signIn } from "next-auth/react";
 import Button from "../Button";
-import GithubIcon from "../icons/GithubIcon";
+// import GithubIcon from "../icons/GithubIcon";
 import GoogleIcon from "../icons/GoogleIcon";
 
 const OAuthButtons = () => {
@@ -15,13 +15,13 @@ const OAuthButtons = () => {
         icon={GoogleIcon}
         type="button"
       />
-      <Button
+      {/* <Button
         outline
         onClick={() => signIn("github")}
         label="Continue with Github"
         icon={GithubIcon}
         type="button"
-      />
+      /> */}
     </div>
   );
 };

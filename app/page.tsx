@@ -10,9 +10,9 @@ export default function Home() {
       >
         <Image src={"/watchFull.png"} alt="Watch Logo" fill />
       </div>
-      <h1 className="py-5 text-xl ">Welcome to TimeJourney.</h1>
+      <h1 className="py-5 text-xl ">Welcome to ManxJourney.</h1>
       <p>
-        Get ready to test your knowledge of historical events and cultural
+        Get ready to test your knowledge of Manx historical events and cultural
         trends. You&apos;ll be transported through time and space, exploring
         different eras and decades. From iconic moments in history to fashion
         fads, technological advancements to popular culture phenomena, this game
