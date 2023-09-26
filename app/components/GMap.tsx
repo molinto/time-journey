@@ -36,23 +36,24 @@ const GMap = ({ finalMarkers, handleMapClick, currentMarker }: MapProps) => {
     return;
   }, []);
 
-  const center = useMemo<LatLngLiteral>(() => ({ lat: 49, lng: 9 }), []);
+  const center = useMemo<LatLngLiteral>(() => ({ lat: 54.2, lng: -4.5 }), []);
 
   const options = useMemo<MapOptions>(
     () => ({
-      mapId: "4e2d8b82f27a9603",
+      mapId: "IDe0304d8e8309f9a7",
+      mapTypeId: "hybrid",
       disableDefaultUI: true,
       clickableIcons: false,
       draggableCursor: "crosshair",
-      minZoom: 1.5,
-
+      minZoom: 5,
+      zoom: 12,
       draggingCursor: null,
       restriction: {
         latLngBounds: {
-          north: 85,
-          south: -85,
-          west: -180,
-          east: 180,
+          north: 54.440166764206445,
+          south: 54.03721631086252,
+          west: -4.891128450356301,
+          east: -4.210297639749381,
         },
       },
     }),

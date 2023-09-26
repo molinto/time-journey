@@ -4,7 +4,7 @@ import { CldUploadWidget, CldUploadWidgetPropsOptions } from "next-cloudinary";
 import Image from "next/image";
 import PhotoIcon from "./icons/PhotoIcon";
 
-const UPLOAD_PRESET = "zgrbsoin";
+const UPLOAD_PRESET = "journey";
 
 const options: CldUploadWidgetPropsOptions = {
   sources: ["url", "local"],
@@ -64,9 +64,9 @@ const ImageUpload = ({ imageUrl, handleUpload, error }: ImageUploadProps) => {
               flex
               h-full
               cursor-pointer
-              flex-col 
-              items-center 
-              justify-center 
+              flex-col
+              items-center
+              justify-center
               gap-4
               border-2
               border-dashed
