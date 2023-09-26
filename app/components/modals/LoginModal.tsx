@@ -1,8 +1,8 @@
 "use client";
 
-import Button from "../Button";
-import Input from "./ModalInput";
-import { handleKeyDown } from "../utils/formUtils";
+// import Button from "../Button";
+// import Input from "./ModalInput";
+// import { handleKeyDown } from "../utils/formUtils";
 import Modal from "./Modal";
 import OAuthButtons from "./OAuthButtons";
 import { open } from "./modalSlice";
@@ -16,7 +16,7 @@ const LoginModal = () => {
 
   const bodyContent = (
     <div className="flex flex-col gap-3">
-      <form
+      {/* <form
         onKeyDown={handleKeyDown}
         className="flex flex-col items-center gap-3"
         onSubmit={handleFormSubmit}
@@ -41,7 +41,7 @@ const LoginModal = () => {
         />
         <Button label="Log in" type="submit" />
       </form>
-      <hr className="border-silver" />
+      <hr className="border-silver" /> */}
       <OAuthButtons />
     </div>
   );
