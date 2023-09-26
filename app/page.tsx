@@ -10,7 +10,7 @@ export default function Home() {
       >
         <Image src={"/watchFull.png"} alt="Watch Logo" fill />
       </div>
-      <h1 className="py-5 text-xl ">Welcome to ManxJourney.</h1>
+      <h1 className="py-5 text-xl ">Welcome to Manx Time Journey.</h1>
       <p>
         Get ready to test your knowledge of Manx historical events and cultural
         trends. You&apos;ll be transported through time and space, exploring
